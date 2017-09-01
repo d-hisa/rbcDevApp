@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123ECA031F5686E700B31DD6 /* ContetsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */; };
+		123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA041F56870300B31DD6 /* AddContentViewController.swift */; };
+		123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA061F56871500B31DD6 /* TagListViewController.swift */; };
+		123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA081F56872400B31DD6 /* SettingViewController.swift */; };
+		123ECA0B1F56873200B31DD6 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */; };
+		123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA0C1F56875000B31DD6 /* Contents.swift */; };
+		123ECA0F1F56875B00B31DD6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA0E1F56875B00B31DD6 /* Category.swift */; };
+		123ECA111F569D0200B31DD6 /* metaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA101F569D0200B31DD6 /* metaData.swift */; };
 		AB8C409A1F4D50480045F589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C40991F4D50480045F589 /* AppDelegate.swift */; };
 		AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8C409D1F4D50480045F589 /* Main.storyboard */; };
 		AB8C40A11F4D50480045F589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8C40A01F4D50480045F589 /* Assets.xcassets */; };
@@ -14,6 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContetsListViewController.swift; sourceTree = "<group>"; };
+		123ECA041F56870300B31DD6 /* AddContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
+		123ECA061F56871500B31DD6 /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
+		123ECA081F56872400B31DD6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
+		123ECA0C1F56875000B31DD6 /* Contents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		123ECA0E1F56875B00B31DD6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		123ECA101F569D0200B31DD6 /* metaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = metaData.swift; sourceTree = "<group>"; };
 		AB8C40961F4D50480045F589 /* rbcDevApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rbcDevApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8C40991F4D50480045F589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB8C409E1F4D50480045F589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +70,14 @@
 			children = (
 				AB8C40991F4D50480045F589 /* AppDelegate.swift */,
 				AB8C409D1F4D50480045F589 /* Main.storyboard */,
+				123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */,
+				123ECA041F56870300B31DD6 /* AddContentViewController.swift */,
+				123ECA061F56871500B31DD6 /* TagListViewController.swift */,
+				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
+				123ECA0C1F56875000B31DD6 /* Contents.swift */,
+				123ECA0E1F56875B00B31DD6 /* Category.swift */,
+				123ECA101F569D0200B31DD6 /* metaData.swift */,
+				123ECA081F56872400B31DD6 /* SettingViewController.swift */,
 				AB8C40A01F4D50480045F589 /* Assets.xcassets */,
 				AB8C40A21F4D50480045F589 /* LaunchScreen.storyboard */,
 				AB8C40A51F4D50480045F589 /* Info.plist */,
@@ -133,7 +157,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */,
+				123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */,
+				123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */,
+				123ECA0B1F56873200B31DD6 /* CategoryListViewController.swift in Sources */,
+				123ECA111F569D0200B31DD6 /* metaData.swift in Sources */,
+				123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */,
+				123ECA031F5686E700B31DD6 /* ContetsListViewController.swift in Sources */,
 				AB8C409A1F4D50480045F589 /* AppDelegate.swift in Sources */,
+				123ECA0F1F56875B00B31DD6 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +327,7 @@
 				AB8C40AA1F4D50480045F589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
