@@ -50,7 +50,7 @@
         <!--Item-->
         <scene sceneID="buW-qt-DQZ">
             <objects>
-                <viewController id="797-i7-b3b" sceneMemberID="viewController">
+                <viewController id="797-i7-b3b" customClass="ContetsListViewController" customModule="rbcDevApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FqY-e0-miT"/>
                         <viewControllerLayoutGuide type="bottom" id="7yB-4X-Xju"/>
@@ -58,13 +58,22 @@
                     <view key="view" contentMode="scaleToFill" id="14e-LC-79F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ContentsListView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AT-uI-guw">
+                                <rect key="frame" x="120" y="323" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="GhR-06-X2d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoQ-VC-rzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="375"/>
+            <point key="canvasLocation" x="1776.8" y="374.66266866566718"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="fH7-g0-hkn">
