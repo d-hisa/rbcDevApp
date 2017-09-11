@@ -17,7 +17,9 @@ class ContetsListViewController: UIViewController {
         super.viewDidLoad()
         var controllerArray : [UIViewController] = []
         
-        var controller : UIViewController = UIViewController(nibName: "controllerNibName", bundle: nil)
+        //var controller : UIViewController = UIViewController(nibName: "controllerNibName", bundle: nil)
+        var controller : UIViewController = ContentsListByCategoryViewController()
+        
         controller.title = "SAMPLE TITLE"
         controllerArray.append(controller)
         
