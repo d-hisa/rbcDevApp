@@ -24,13 +24,24 @@ class ContentsListViewController: UIViewController {
         // var controller : UIViewController = ContetnsListBuCategoryViewController
         // controller.title = "hoge"
         // controllerArray.append(controller)
+        
+        for i in 1...4 {
+            //let controller = UITableViewController(nibName: "ContentsListTableViewController",bundle:nil)
+            let controller = ContentsListTableViewController()
+            controller.title = "MENU" + String(i)
+            controllerArray.append(controller)
+        }
+        
+        
+        /*
+         
         var controller : UIViewController = ContentsListByCategoryViewController()
         controller.title = "sample 1"
         controllerArray.append(controller)
         var controller2 : UIViewController = ContentsListByCategoryViewController()
         controller2.title = "sample 2"
         controllerArray.append(controller2)
-        
+        */
         var parameters: [CAPSPageMenuOption] = [
             // テキストタイトルの幅にタブ幅を追従
             .menuItemWidthBasedOnTitleTextWidth(true),
