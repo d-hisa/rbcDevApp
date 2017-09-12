@@ -2,7 +2,7 @@
 //  ContentsListByCategoryViewController.swift
 //  rbcDevApp
 //
-//  Created by 久澤大輝 on 2017/09/12.
+//  Created by nttr on 2017/09/12.
 //  Copyright © 2017年 nttr. All rights reserved.
 //
 

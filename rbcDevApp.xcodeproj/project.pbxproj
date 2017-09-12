@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		123ECA031F5686E700B31DD6 /* ContetsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */; };
+		123ECA031F5686E700B31DD6 /* ContentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */; };
 		123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA041F56870300B31DD6 /* AddContentViewController.swift */; };
 		123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA061F56871500B31DD6 /* TagListViewController.swift */; };
 		123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA081F56872400B31DD6 /* SettingViewController.swift */; };
@@ -20,11 +20,13 @@
 		AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8C409D1F4D50480045F589 /* Main.storyboard */; };
 		AB8C40A11F4D50480045F589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8C40A01F4D50480045F589 /* Assets.xcassets */; };
 		AB8C40A41F4D50480045F589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8C40A21F4D50480045F589 /* LaunchScreen.storyboard */; };
-		FCF287331F66E1A000224E80 /* ContentsListByCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF287321F66E1A000224E80 /* ContentsListByCategoryViewController.swift */; };
+		ABB437AA1F67CBA900D6F699 /* ContentsListByCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */; };
+		ABB437AB1F67CBA900D6F699 /* ContentsListByCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB437A91F67CBA900D6F699 /* ContentsListByCategoryViewController.xib */; };
+		ABB437AD1F67D0FA00D6F699 /* ColorUitlities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContetsListViewController.swift; sourceTree = "<group>"; };
+		123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListViewController.swift; sourceTree = "<group>"; };
 		123ECA041F56870300B31DD6 /* AddContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
 		123ECA061F56871500B31DD6 /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		123ECA081F56872400B31DD6 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +43,9 @@
 		AB8C40A01F4D50480045F589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB8C40A31F4D50480045F589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB8C40A51F4D50480045F589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCF287321F66E1A000224E80 /* ContentsListByCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListByCategoryViewController.swift; sourceTree = "<group>"; };
+		ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListByCategoryViewController.swift; sourceTree = "<group>"; };
+		ABB437A91F67CBA900D6F699 /* ContentsListByCategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentsListByCategoryViewController.xib; sourceTree = "<group>"; };
+		ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUitlities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,22 +98,40 @@
 		AB8C40981F4D50480045F589 /* rbcDevApp */ = {
 			isa = PBXGroup;
 			children = (
+				ABB437A71F67CA3900D6F699 /* UtilityClasses */,
+				ABB437A61F67CA2C00D6F699 /* ViewControllers */,
 				AB8C40991F4D50480045F589 /* AppDelegate.swift */,
 				AB8C409D1F4D50480045F589 /* Main.storyboard */,
-				123ECA021F5686E700B31DD6 /* ContetsListViewController.swift */,
-				123ECA041F56870300B31DD6 /* AddContentViewController.swift */,
-				123ECA061F56871500B31DD6 /* TagListViewController.swift */,
-				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
-				123ECA0C1F56875000B31DD6 /* Contents.swift */,
-				123ECA0E1F56875B00B31DD6 /* Category.swift */,
-				123ECA101F569D0200B31DD6 /* metaData.swift */,
-				123ECA081F56872400B31DD6 /* SettingViewController.swift */,
 				AB8C40A01F4D50480045F589 /* Assets.xcassets */,
 				AB8C40A21F4D50480045F589 /* LaunchScreen.storyboard */,
 				AB8C40A51F4D50480045F589 /* Info.plist */,
-				FCF287321F66E1A000224E80 /* ContentsListByCategoryViewController.swift */,
 			);
 			path = rbcDevApp;
+			sourceTree = "<group>";
+		};
+		ABB437A61F67CA2C00D6F699 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
+				ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */,
+				ABB437A91F67CBA900D6F699 /* ContentsListByCategoryViewController.xib */,
+				123ECA041F56870300B31DD6 /* AddContentViewController.swift */,
+				123ECA061F56871500B31DD6 /* TagListViewController.swift */,
+				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
+				123ECA081F56872400B31DD6 /* SettingViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ABB437A71F67CA3900D6F699 /* UtilityClasses */ = {
+			isa = PBXGroup;
+			children = (
+				123ECA0C1F56875000B31DD6 /* Contents.swift */,
+				123ECA0E1F56875B00B31DD6 /* Category.swift */,
+				123ECA101F569D0200B31DD6 /* metaData.swift */,
+				ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */,
+			);
+			name = UtilityClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +199,7 @@
 				AB8C40A41F4D50480045F589 /* LaunchScreen.storyboard in Resources */,
 				AB8C40A11F4D50480045F589 /* Assets.xcassets in Resources */,
 				AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */,
+				ABB437AB1F67CBA900D6F699 /* ContentsListByCategoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +254,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -244,11 +267,12 @@
 				123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */,
 				123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */,
 				123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */,
-				FCF287331F66E1A000224E80 /* ContentsListByCategoryViewController.swift in Sources */,
+				ABB437AD1F67D0FA00D6F699 /* ColorUitlities.swift in Sources */,
+				ABB437AA1F67CBA900D6F699 /* ContentsListByCategoryViewController.swift in Sources */,
 				123ECA0B1F56873200B31DD6 /* CategoryListViewController.swift in Sources */,
 				123ECA111F569D0200B31DD6 /* metaData.swift in Sources */,
 				123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */,
-				123ECA031F5686E700B31DD6 /* ContetsListViewController.swift in Sources */,
+				123ECA031F5686E700B31DD6 /* ContentsListViewController.swift in Sources */,
 				AB8C409A1F4D50480045F589 /* AppDelegate.swift in Sources */,
 				123ECA0F1F56875B00B31DD6 /* Category.swift in Sources */,
 			);

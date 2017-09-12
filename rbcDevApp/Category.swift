@@ -21,8 +21,17 @@ class Category {
     var textColor: UIColor = UIColor.white
     
     init() {
-        name = "untitled"
-        
+        name = "untitled cattegory"
+        code = "0"
+        color = UIColor.white
+        textColor = UIColor.black
+    }
+    
+    init(name:String,code:String,color:UIColor,textColor:UIColor){
+        self.name = name
+        self.code = code
+        self.color = color
+        self.textColor = textColor
     }
     
 }
