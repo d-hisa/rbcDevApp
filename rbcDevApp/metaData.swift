@@ -10,14 +10,34 @@ import UIKit
 
 class metaData{
     
-    enum MetaDataType: Int{
-        case freeFormat             = 1
-        case numericFormat          = 2
-        case dateFormat             = 3
-        case numericWithUnitFormat  = 4
-        case colorFormat            = 5
-        case imageFormat            = 6
+    enum MetaDataType: String{
+        case freeFormat             = "freeFormat"
+        case numericFormat          = "numericFormat"
+        case dateFormat             = "dateFormat"
+        case numericWithUnitFormat  = "numericWithUnitFormat"
+        case colorFormat            = "colorFormat"
+        case imageFormat            = "imageFormat"
     }
     
+    var metaDataFormat: [Any] = []
+    
+    
+    init(metaDataType: MetaDataType){
+        switch metaDataType {
+        case .freeFormat:
+            metaDataFormat.append(String())
+        case .numericFormat:
+            metaDataFormat.append(Double())
+        case .dateFormat:
+            metaDataFormat.append(Int())
+        case .numericWithUnitFormat:
+        case .colorFormat:
+        case .imageFormat:
+        default:
+            <#code#>
+        }
+        
+        
+    }
     
 }

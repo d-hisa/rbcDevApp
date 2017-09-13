@@ -16,7 +16,6 @@ class colorUtilities{
         modernColors.append(UIColor(red:0,green:0,blue:0,alpha:1.0))
     }
     
-    
     func randColor() -> UIColor{
         let r: CGFloat = CGFloat(arc4random_uniform(255)+1) / 255.0
         let g: CGFloat = CGFloat(arc4random_uniform(255)+1) / 255.0

@@ -33,25 +33,13 @@ class ContentsListViewController: UIViewController {
         // controllerArray.append(controller)
         
         for i in 0 ..< demoCategoryArray.count {
-            //let controller = ContentsListTableViewController(nibName: "ContentsListTableViewController",bundle:nil)
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
-            //let controller = ContentsListTableViewController()
             controller.title = demoCategoryArray[i].name
             controller.category = demoCategoryArray[i]
             controllerArray.append(controller)
         }
-        
-        
-        /*
-         
-        var controller : UIViewController = ContentsListByCategoryViewController()
-        controller.title = "sample 1"
-        controllerArray.append(controller)
-        var controller2 : UIViewController = ContentsListByCategoryViewController()
-        controller2.title = "sample 2"
-        controllerArray.append(controller2)
-        */
+
         var parameters: [CAPSPageMenuOption] = [
             // テキストタイトルの幅にタブ幅を追従
             .menuItemWidthBasedOnTitleTextWidth(true),
@@ -96,18 +84,6 @@ class ContentsListViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
