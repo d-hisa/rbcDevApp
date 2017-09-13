@@ -1,14 +1,19 @@
 //
-//  ContentsListByCategoryViewController.swift
+//  ContentDetailViewController.swift
 //  rbcDevApp
 //
-//  Created by nttr on 2017/09/12.
+//  Created by nttr on 2017/09/13.
 //  Copyright © 2017年 nttr. All rights reserved.
 //
 
 import UIKit
 
-class ContentsListByCategoryViewController: UIViewController {
+class ContentDetailViewController: UIViewController {
+    
+    var selectedContentIndex: Int = 0
+    var selectedContentBelongingCategory: Category = Category()
+    var thisContent: Contents = Contents()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

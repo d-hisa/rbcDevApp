@@ -20,7 +20,6 @@
 		AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8C409D1F4D50480045F589 /* Main.storyboard */; };
 		AB8C40A11F4D50480045F589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8C40A01F4D50480045F589 /* Assets.xcassets */; };
 		AB8C40A41F4D50480045F589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8C40A21F4D50480045F589 /* LaunchScreen.storyboard */; };
-		ABB437AA1F67CBA900D6F699 /* ContentsListByCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */; };
 		ABB437AD1F67D0FA00D6F699 /* ColorUitlities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */; };
 		ABB437BE1F67E2E200D6F699 /* icon_category30.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB437B91F67E2E200D6F699 /* icon_category30.png */; };
 		ABB437BF1F67E2E200D6F699 /* icon_tag30.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB437BA1F67E2E200D6F699 /* icon_tag30.png */; };
@@ -34,6 +33,7 @@
 		ABB437CE1F68298200D6F699 /* sample_iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABB437CB1F68298200D6F699 /* sample_iphone.jpg */; };
 		ABB437CF1F68298200D6F699 /* sample_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABB437CC1F68298200D6F699 /* sample_ipad.jpg */; };
 		ABB437D01F68298200D6F699 /* sample_appleWatch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABB437CD1F68298200D6F699 /* sample_appleWatch.jpg */; };
+		ABB437D21F6852AF00D6F699 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +54,6 @@
 		AB8C40A01F4D50480045F589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB8C40A31F4D50480045F589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB8C40A51F4D50480045F589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListByCategoryViewController.swift; sourceTree = "<group>"; };
 		ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUitlities.swift; sourceTree = "<group>"; };
 		ABB437B91F67E2E200D6F699 /* icon_category30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_category30.png; sourceTree = "<group>"; };
 		ABB437BA1F67E2E200D6F699 /* icon_tag30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_tag30.png; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		ABB437CB1F68298200D6F699 /* sample_iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample_iphone.jpg; sourceTree = "<group>"; };
 		ABB437CC1F68298200D6F699 /* sample_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample_ipad.jpg; sourceTree = "<group>"; };
 		ABB437CD1F68298200D6F699 /* sample_appleWatch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample_appleWatch.jpg; sourceTree = "<group>"; };
+		ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,11 +136,11 @@
 			isa = PBXGroup;
 			children = (
 				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
-				ABB437A81F67CBA900D6F699 /* ContentsListByCategoryViewController.swift */,
 				ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */,
 				ABB437C41F67EBA200D6F699 /* ContentsListTableViewController.xib */,
 				ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */,
 				ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */,
+				ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */,
 				123ECA041F56870300B31DD6 /* AddContentViewController.swift */,
 				123ECA061F56871500B31DD6 /* TagListViewController.swift */,
 				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
@@ -317,8 +317,8 @@
 				123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */,
 				123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */,
 				123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */,
+				ABB437D21F6852AF00D6F699 /* ContentDetailViewController.swift in Sources */,
 				ABB437AD1F67D0FA00D6F699 /* ColorUitlities.swift in Sources */,
-				ABB437AA1F67CBA900D6F699 /* ContentsListByCategoryViewController.swift in Sources */,
 				ABB437C51F67EBA200D6F699 /* ContentsListTableViewController.swift in Sources */,
 				123ECA0B1F56873200B31DD6 /* CategoryListViewController.swift in Sources */,
 				ABB437C91F67ED1F00D6F699 /* ContentsListTableViewCell.swift in Sources */,

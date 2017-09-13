@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Contents: NSObject{
+class Contents{
+    var metaDataArray: [metaData] = []
     
     
     

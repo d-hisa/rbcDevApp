@@ -12,6 +12,13 @@ import PageMenu
 class ContentsListViewController: UIViewController {
 
     var pageMenu: CAPSPageMenu?
+    
+    var demoCategoryArray: [Category] = [
+        Category(name: "Apple",code: "1",color: UIColor.white,textColor: UIColor.black),
+        Category(name: "Device",code: "2",color: UIColor.white,textColor: UIColor.black),
+        Category(name: "Cloth",code: "3",color: UIColor.white,textColor: UIColor.black)
+    ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +32,11 @@ class ContentsListViewController: UIViewController {
         // controller.title = "hoge"
         // controllerArray.append(controller)
         
-        for i in 1...4 {
+        for i in 0 ..< demoCategoryArray.count {
             //let controller = UITableViewController(nibName: "ContentsListTableViewController",bundle:nil)
             let controller = ContentsListTableViewController()
-            controller.title = "MENU" + String(i)
+            controller.title = demoCategoryArray[i].name
+            controller.category = demoCategoryArray[i]
             controllerArray.append(controller)
         }
         
@@ -75,7 +83,9 @@ class ContentsListViewController: UIViewController {
         
         // Lastly add page menu as subview of base view controller view
         // or use pageMenu controller in you view hierachy as desired
+        self.addChildViewController(self.pageMenu!)
         self.view.addSubview(pageMenu!.view)
+        
         // Optional delegate
         pageMenu!.delegate = self as? CAPSPageMenuDelegate
         

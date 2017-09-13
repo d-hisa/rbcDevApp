@@ -18,6 +18,7 @@ class ContentsListTableViewController: UITableViewController {
         UIImage(named: "sample_appleWatch.jpg")!
         ]
     
+    var category:Category = Category()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +45,6 @@ class ContentsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainText.count
     }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ContentsListTableViewCell",
@@ -56,6 +55,29 @@ class ContentsListTableViewController: UITableViewController {
         cell.contentImage.image = contentsImage[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let storyborad:UIStoryboard = self.storyboard!
+        //let detailContentView = storyboard?.instantiateViewController(withIdentifier: "detailContentView") as! ContentDetailViewController
+        //self.presentedViewController(detailContentView, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "toDetailContent", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if ((segue.destination as! ContentDetailViewController) != nil){
+            let contentDetailViewController = segue.destination as! ContentDetailViewController
+            let selectedIndexPath = tableView.indexPathForSelectedRow!
+            let selectedContentBelongingCategory = category
+            
+            contentDetailViewController.selectedContentIndex = selectedIndexPath.row
+            contentDetailViewController.selectedContentBelongingCategory = selectedContentBelongingCategory
+            
+            
+        }
+    }
+    
+    
     
 
     /*
