@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentsListTableViewController: UITableViewController {
+class ContentsListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var mainText: [String] = ["iPhone7","iPad Pro 9.7","AppleWatch2"]
     var subText: [String] = ["MNCJ2J/A","MM172J/A","MNT22J/A"]
@@ -20,20 +20,19 @@ class ContentsListTableViewController: UITableViewController {
     
     var category:Category = Category()
     
+    @IBOutlet var contentsListTableViews: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView()
-        
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableViewAutomaticDimension
+        contentsListTableViews.delegate = self
+        contentsListTableViews.dataSource = self
+        contentsListTableViews.tableFooterView = UIView()
         
         let nib : UINib = UINib(nibName:"ContentsListTableViewCell",bundle: Bundle.main)
-        self.tableView.register(nib,forCellReuseIdentifier:"ContentsListTableViewCell")
-        self.tableView.reloadData()
+        contentsListTableViews.register(nib,forCellReuseIdentifier:"ContentsListTableViewCell")
+        contentsListTableViews.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,15 +40,10 @@ class ContentsListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainText.count
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ContentsListTableViewCell",
             for: indexPath
@@ -60,7 +54,7 @@ class ContentsListTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let storyborad:UIStoryboard = self.storyboard!
         //let detailContentView = storyboard?.instantiateViewController(withIdentifier: "detailContentView") as! ContentDetailViewController
         //self.presentedViewController(detailContentView, animated: true, completion: nil)
@@ -71,7 +65,7 @@ class ContentsListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if ((segue.destination as! ContentDetailViewController) != nil){
             let contentDetailViewController = segue.destination as! ContentDetailViewController
-            let selectedIndexPath = tableView.indexPathForSelectedRow!
+            let selectedIndexPath = contentsListTableViews.indexPathForSelectedRow!
             let selectedContentBelongingCategory = category
             
             contentDetailViewController.selectedContentIndex = selectedIndexPath.row

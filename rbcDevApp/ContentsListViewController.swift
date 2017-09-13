@@ -33,8 +33,10 @@ class ContentsListViewController: UIViewController {
         // controllerArray.append(controller)
         
         for i in 0 ..< demoCategoryArray.count {
-            //let controller = UITableViewController(nibName: "ContentsListTableViewController",bundle:nil)
-            let controller = ContentsListTableViewController()
+            //let controller = ContentsListTableViewController(nibName: "ContentsListTableViewController",bundle:nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
+            //let controller = ContentsListTableViewController()
             controller.title = demoCategoryArray[i].name
             controller.category = demoCategoryArray[i]
             controllerArray.append(controller)

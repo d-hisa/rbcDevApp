@@ -60,35 +60,43 @@
             <point key="canvasLocation" x="897" y="2075"/>
         </scene>
         <!--Contents List Table View Controller-->
-        <scene sceneID="N8i-oG-iri">
+        <scene sceneID="B4s-c6-jqc">
             <objects>
-                <tableViewController id="d8Q-hN-bri" customClass="ContentsListTableViewController" customModule="rbcDevApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xuw-65-Dbw">
+                <viewController storyboardIdentifier="ContentsListTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lFM-AI-WxO" customClass="ContentsListTableViewController" customModule="rbcDevApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G33-Yt-3o0"/>
+                        <viewControllerLayoutGuide type="bottom" id="9O4-05-bQn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4HI-mZ-Qxv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tLr-dg-HdH">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentsListTableViewCell" rowHeight="100" id="vyN-9J-jUn">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vyN-9J-jUn" id="4S5-JY-hqw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentsListTableViewCell" rowHeight="100" id="eKu-b8-0fg" customClass="ContentsListTableViewCell" customModule="rbcDevApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eKu-b8-0fg" id="KBF-MT-rQI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="d8Q-hN-bri" id="9hp-93-PAn"/>
-                            <outlet property="delegate" destination="d8Q-hN-bri" id="M2L-UK-VQ2"/>
-                        </connections>
-                    </tableView>
+                    </view>
                     <connections>
-                        <segue destination="eyv-L4-9Yz" kind="show" identifier="toDetailContent" id="usN-rQ-yuJ"/>
+                        <outlet property="contentsListTableViews" destination="tLr-dg-HdH" id="MpU-un-7oS"/>
+                        <segue destination="eyv-L4-9Yz" kind="show" identifier="toDetailContent" id="fJc-pS-kz8"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9sD-OF-F8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ta7-5I-69D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528.8000000000002" y="-427.73613193403304"/>
+            <point key="canvasLocation" x="2517.5999999999999" y="-428.63568215892059"/>
         </scene>
         <!--ContentsList-->
         <scene sceneID="Dwr-KN-ViD">
