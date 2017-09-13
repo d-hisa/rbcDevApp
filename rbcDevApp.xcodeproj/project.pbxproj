@@ -27,7 +27,6 @@
 		ABB437C11F67E2E200D6F699 /* icon_add30.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB437BC1F67E2E200D6F699 /* icon_add30.png */; };
 		ABB437C21F67E2E200D6F699 /* icon_setting30.png in Resources */ = {isa = PBXBuildFile; fileRef = ABB437BD1F67E2E200D6F699 /* icon_setting30.png */; };
 		ABB437C51F67EBA200D6F699 /* ContentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */; };
-		ABB437C61F67EBA200D6F699 /* ContentsListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB437C41F67EBA200D6F699 /* ContentsListTableViewController.xib */; };
 		ABB437C91F67ED1F00D6F699 /* ContentsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */; };
 		ABB437CA1F67ED1F00D6F699 /* ContentsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */; };
 		ABB437CE1F68298200D6F699 /* sample_iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ABB437CB1F68298200D6F699 /* sample_iphone.jpg */; };
@@ -61,7 +60,6 @@
 		ABB437BC1F67E2E200D6F699 /* icon_add30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add30.png; sourceTree = "<group>"; };
 		ABB437BD1F67E2E200D6F699 /* icon_setting30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_setting30.png; sourceTree = "<group>"; };
 		ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListTableViewController.swift; sourceTree = "<group>"; };
-		ABB437C41F67EBA200D6F699 /* ContentsListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentsListTableViewController.xib; sourceTree = "<group>"; };
 		ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListTableViewCell.swift; sourceTree = "<group>"; };
 		ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentsListTableViewCell.xib; sourceTree = "<group>"; };
 		ABB437CB1F68298200D6F699 /* sample_iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sample_iphone.jpg; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			children = (
 				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
 				ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */,
-				ABB437C41F67EBA200D6F699 /* ContentsListTableViewController.xib */,
 				ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */,
 				ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */,
 				ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */,
@@ -244,7 +241,6 @@
 				ABB437CE1F68298200D6F699 /* sample_iphone.jpg in Resources */,
 				ABB437CF1F68298200D6F699 /* sample_ipad.jpg in Resources */,
 				ABB437BF1F67E2E200D6F699 /* icon_tag30.png in Resources */,
-				ABB437C61F67EBA200D6F699 /* ContentsListTableViewController.xib in Resources */,
 				AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */,
 				ABB437BE1F67E2E200D6F699 /* icon_category30.png in Resources */,
 				ABB437C21F67E2E200D6F699 /* icon_setting30.png in Resources */,
