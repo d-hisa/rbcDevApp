@@ -19,25 +19,29 @@ class metaData{
         case imageFormat            = "imageFormat"
     }
     
-    var metaDataFormat: [Any] = []
+    var metaDataFormat: [[String:Any]] = [[:]]
     
     
     init(metaDataType: MetaDataType){
         switch metaDataType {
         case .freeFormat:
-            metaDataFormat.append(String())
+            metaDataFormat.append(["text":String()])
         case .numericFormat:
-            metaDataFormat.append(Double())
+            metaDataFormat.append(["value":Double()])
         case .dateFormat:
-            metaDataFormat.append(Int())
+            metaDataFormat.append(["year":Int()])
+            metaDataFormat.append(["month":Int()])
+            metaDataFormat.append(["daty":Int()])
         case .numericWithUnitFormat:
+            metaDataFormat.append(["value":Double()])
+            metaDataFormat.append(["unit":String()])
         case .colorFormat:
+            metaDataFormat.append(["color":UIColor()])
         case .imageFormat:
+            metaDataFormat.append(["image":UIImage()])
         default:
-            <#code#>
+            metaDataFormat.append(["text":String()])
         }
-        
-        
     }
     
 }
