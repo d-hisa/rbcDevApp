@@ -35,7 +35,7 @@ class ContentsListViewController: UIViewController {
         for i in 0 ..< demoCategoryArray.count {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
-            controller.title = demoCategoryArray[i].name
+            controller.title = demoCategoryArray[i].cName
             controller.category = demoCategoryArray[i]
             controllerArray.append(controller)
         }
