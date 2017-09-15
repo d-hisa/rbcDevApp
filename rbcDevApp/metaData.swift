@@ -10,7 +10,7 @@ import UIKit
 
 class metaData{
     
-    enum MetaDataType: String{
+    enum mType: String{
         case freeFormat             = "freeFormat"
         case numericFormat          = "numericFormat"
         case dateFormat             = "dateFormat"
@@ -19,19 +19,18 @@ class metaData{
         case imageFormat            = "imageFormat"
     }
     
+    var mName: String = ""
     var metaDataFormat: [[String:Any]] = [[:]]
     
-    
-    init(metaDataType: MetaDataType){
-        switch metaDataType {
+    init(name: String, type: mType){
+        self.mName = name
+        switch type {
         case .freeFormat:
             metaDataFormat.append(["text":String()])
         case .numericFormat:
             metaDataFormat.append(["value":Double()])
         case .dateFormat:
-            metaDataFormat.append(["year":Int()])
-            metaDataFormat.append(["month":Int()])
-            metaDataFormat.append(["daty":Int()])
+            metaDataFormat.append(["date":Calendar.current.dateComponents([.year,.month,.day], from: Date())])
         case .numericWithUnitFormat:
             metaDataFormat.append(["value":Double()])
             metaDataFormat.append(["unit":String()])
@@ -39,9 +38,6 @@ class metaData{
             metaDataFormat.append(["color":UIColor()])
         case .imageFormat:
             metaDataFormat.append(["image":UIImage()])
-        default:
-            metaDataFormat.append(["text":String()])
         }
     }
-    
 }

@@ -15,23 +15,31 @@ class Category {
     // color: black
     // textColor: white
 
-    var name: String = ""
-    var code: String = ""
-    var color: UIColor = UIColor.black
-    var textColor: UIColor = UIColor.white
+    var cName: String = ""
+    var cCode: String = ""
+    var cColor: UIColor = UIColor.black
+    var cTextColor: UIColor = UIColor.white
+    var cMetaDataArray: [metaData] = []
     
     init() {
-        name = "untitled cattegory"
-        code = "0"
-        color = UIColor.white
-        textColor = UIColor.black
+        self.cName = "untitled"
+        self.cCode = "0"
+        self.cColor = UIColor.white
+        self.cTextColor = UIColor.black
+        initializeMetaData()
     }
     
     init(name:String,code:String,color:UIColor,textColor:UIColor){
-        self.name = name
-        self.code = code
-        self.color = color
-        self.textColor = textColor
+        self.cName = name
+        self.cCode = code
+        self.cColor = color
+        self.cTextColor = textColor
+        initializeMetaData()
+    }
+    
+    func initializeMetaData(){
+        cMetaDataArray.append(metaData(name: "MainText", type: metaData.mType.freeFormat))
+        cMetaDataArray.append(metaData(name: "SubText", type: metaData.mType.freeFormat))
     }
     
 }
