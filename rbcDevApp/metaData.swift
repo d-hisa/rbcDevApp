@@ -26,18 +26,18 @@ class metaData{
         self.mName = name
         switch type {
         case .freeFormat:
-            metaDataFormat.append(["text":String()])
+            metaDataFormat.append(["text":"Free text"])
         case .numericFormat:
-            metaDataFormat.append(["value":Double()])
+            metaDataFormat.append(["value":Double(0.0)])
         case .dateFormat:
-            metaDataFormat.append(["date":Calendar.current.dateComponents([.year,.month,.day], from: Date())])
+            metaDataFormat.append(["date":Defaults().today])
         case .numericWithUnitFormat:
-            metaDataFormat.append(["value":Double()])
-            metaDataFormat.append(["unit":String()])
+            metaDataFormat.append(["value":Double(0.0)])
+            metaDataFormat.append(["unit":"Unit"])
         case .colorFormat:
-            metaDataFormat.append(["color":UIColor()])
+            metaDataFormat.append(["color":UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)])
         case .imageFormat:
-            metaDataFormat.append(["image":UIImage()])
+            metaDataFormat.append(["image":Defaults().image])
         }
     }
 }

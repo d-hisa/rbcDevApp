@@ -9,37 +9,28 @@
 import UIKit
 
 class Category {
-    // Category set
-    // name: Electronics
-    // code: 0
-    // color: black
-    // textColor: white
-
-    var cName: String = ""
-    var cCode: String = ""
-    var cColor: UIColor = UIColor.black
-    var cTextColor: UIColor = UIColor.white
-    var cMetaDataArray: [metaData] = []
+    var catName: String = ""
+    var catCode: String = ""
+    var catTextColor: UIColor = UIColor()
+    var catBackColor: UIColor = UIColor()
+    var catContensArray: [Contents] = []
     
     init() {
-        self.cName = "untitled"
-        self.cCode = "0"
-        self.cColor = UIColor.white
-        self.cTextColor = UIColor.black
-        initializeMetaData()
+        self.catName = "untitled"
+        self.catCode = "0"
+        self.catBackColor = Defaults().backColor
+        self.catTextColor = Defaults().textColor
     }
     
     init(name:String,code:String,color:UIColor,textColor:UIColor){
-        self.cName = name
-        self.cCode = code
-        self.cColor = color
-        self.cTextColor = textColor
-        initializeMetaData()
+        self.catName = name
+        self.catCode = code
+        self.catBackColor = color
+        self.catTextColor = textColor
     }
     
-    func initializeMetaData(){
-        cMetaDataArray.append(metaData(name: "MainText", type: metaData.mType.freeFormat))
-        cMetaDataArray.append(metaData(name: "SubText", type: metaData.mType.freeFormat))
+    func addContent(content:Contents){
+        catContensArray.append(content)
     }
     
 }

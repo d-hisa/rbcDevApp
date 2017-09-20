@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J4d-vj-r1u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J4d-vj-r1u">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -80,7 +80,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vyN-9J-jUn" id="4S5-JY-hqw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -112,6 +112,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="ContentsList" id="HvV-74-66V">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="EWH-M8-b0f"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="yDc-jq-8XN"/>
                     </navigationItem>
                 </viewController>
@@ -119,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="1840.8" y="-426.83658170914543"/>
         </scene>
-        <!--ContentDetail-->
+        <!--Content Detail View Controller-->
         <scene sceneID="Jcw-cP-Zfc">
             <objects>
                 <viewController storyboardIdentifier="detailContentView" id="eyv-L4-9Yz" customClass="ContentDetailViewController" customModule="rbcDevApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,9 +142,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="ContentDetail" id="TUO-7v-Nzz">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="DjU-Og-dpy"/>
-                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOa-ec-XAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

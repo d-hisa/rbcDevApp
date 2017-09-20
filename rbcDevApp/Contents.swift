@@ -9,10 +9,23 @@
 import UIKit
 
 class Contents{
-    var metaDataArray: [metaData] = []
+    var conName:String = ""
+    var conImage:UIImage = UIImage()
+    var conMetaDataArray: [metaData] = []
     
+    ///////////// Constructor /////////////
+    init(){
+        self.conName = "untitled"
+        self.conImage = Defaults().image
+    }
     
+    init(name: String){
+        self.conName = name
+        self.conImage = Defaults().image
+    }
+    ///////////////////////////////////////
     
-    
-    
+    func addMetaData(mData:metaData){
+        conMetaDataArray.append(mData)
+    }
 }
