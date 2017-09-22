@@ -14,20 +14,19 @@ class demoDatas {
     
     init(){
         // demo category 1
-        var catAppleDevice: Category = Category(name: "AppleDevice", code: "0", color: UIColor.black, textColor: UIColor.white)
-        var mainText: [String] = ["iPhone7","iPad Pro 9.7","AppleWatch2"]
-        var subText: [String] = ["MNCJ2J/A","MM172J/A","MNT22J/A"]
-        var contentsImage: [UIImage] = [
-            UIImage(named: "sample_iphone.jpg")!,
-            UIImage(named: "sample_ipad.jpg")!,
-            UIImage(named: "sample_appleWatch.jpg")!
-        ]
-        for i in 0 ..< mainText.count {
-            let content: Contents = Contents(name: mainText[i])
-            content.conImage = contentsImage[i]
-            let mData: metaData = metaData(name: "TypeCode", type: metaData.mType.freeFormat)
-            content.addMetaData(mData: mData)            
-        }
+        let catAppleDevice: Category = Category(name: "AppleDevice", code: "0", color: UIColor.black, textColor: UIColor.white)
+        let conIphone7: Contents = Contents(name: "iPhone7",image: UIImage(named: "sample_iphone.jpg")!)
+        let conIpad: Contents = Contents(name: "iPad Pro 9.7", image: UIImage(named: "sample_ipad.jpg")!)
+        let conAppleWatch: Contents = Contents(name: "AppleWatch2", image: UIImage(named: "sample_appleWatch.jpg")!)
+        conIphone7.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
+        conIpad.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
+        conAppleWatch.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
+        catAppleDevice.addContent(content: conIphone7)
+        catAppleDevice.addContent(content: conIpad)
+        catAppleDevice.addContent(content: conAppleWatch)
+        
+        // demo category 2
+        let catCloth: Category = Category(name: "Clothes", code: "1", color: UIColor.blue, textColor: UIColor.white)
         
         
         

@@ -23,6 +23,10 @@ class Contents{
         self.conName = name
         self.conImage = Defaults().image
     }
+    init(name: String, image: UIImage){
+        self.conName = name
+        self.conImage = image
+    }
     ///////////////////////////////////////
     
     func addMetaData(mData:metaData){
