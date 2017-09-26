@@ -24,11 +24,21 @@ class demoDatas {
         catAppleDevice.addContent(content: conIphone7)
         catAppleDevice.addContent(content: conIpad)
         catAppleDevice.addContent(content: conAppleWatch)
+        categoryArray.append(catAppleDevice)
         
         // demo category 2
         let catCloth: Category = Category(name: "Clothes", code: "1", color: UIColor.blue, textColor: UIColor.white)
+        let conTops: Contents = Contents(name: "Tops")
+        let conBottoms: Contents = Contents(name: "Bottoms")
+        let conSocks: Contents = Contents(name: "Socks")
+        conTops.addMetaData(mData: metaData(name: "Size", type: metaData.mType.freeFormat))
+        conBottoms.addMetaData(mData: metaData(name: "Size", type: metaData.mType.freeFormat))
+        conSocks.addMetaData(mData: metaData(name: "Size", type: metaData.mType.freeFormat))
+        catCloth.addContent(content: conTops)
+        catCloth.addContent(content: conBottoms)
+        catCloth.addContent(content: conSocks)
         
-        
+        categoryArray.append(catCloth)
         
         
         

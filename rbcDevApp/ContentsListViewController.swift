@@ -25,20 +25,23 @@ class ContentsListViewController: UIViewController {
         
         // Define scroll page contoller array
         var controllerArray : [UIViewController] = []
+        var demoDataCatArray: [Category] = demoDatas().categoryArray
         
-        // Define contorollers each contents lists
-        // ex.)
-        // var controller : UIViewController = ContetnsListBuCategoryViewController
-        // controller.title = "hoge"
-        // controllerArray.append(controller)
-        
+        for i in 0 ..< demoDataCatArray.count{
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
+            controller.title = demoDataCatArray[i].catName
+            controller.category = demoDataCatArray[i]
+            controllerArray.append(controller)
+        }
+        /*
         for i in 0 ..< demoCategoryArray.count {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
             controller.title = demoCategoryArray[i].catName
             controller.category = demoCategoryArray[i]
             controllerArray.append(controller)
-        }
+        }*/
 
         var parameters: [CAPSPageMenuOption] = [
             // テキストタイトルの幅にタブ幅を追従
