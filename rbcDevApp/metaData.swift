@@ -8,7 +8,7 @@
 
 import UIKit
 
-class metaData{
+struct metaData {
     enum mType: String{
         case freeFormat             = "freeFormat"
         case numericFormat          = "numericFormat"
@@ -17,30 +17,62 @@ class metaData{
         case colorFormat            = "colorFormat"
         case imageFormat            = "imageFormat"
     }
-    var mData:Any
+    
+    var name:String
+    var myType: mType
+    var value:Double
+    var text:String
+    var image:UIImage
+    var date:DateComponents
+    var color:UIColor
+    
+    init(name: String, type:mType){
+        self.name = name
+        self.myType = type
+        self.value = Defaults().num
+        self.text = Defaults().text
+        self.image = Defaults().image
+        self.date = Defaults().today
+        self.color = Defaults().backColor
+    }
+    
+    
+    
+    /*
+    var mData:metaDataType
     
     init(type: mType){
         switch type {
         case .freeFormat:
-            mData = mData as! freeFormat
-            mData = freeFormat()
+            //mData = mData as! freeFormat
+            mData = metaDataType(mType: .freeFormat)
         case .numericFormat:
-            mData = mData as! numericFormat
-            mData = numericFormat()
+            //mData = mData as! numericFormat
+            mData = metaDataType(mType: .numericFormat)
         case .dateFormat:
-            mData = mData as! dateFormat
-            mData = dateFormat()
+            //mData = mData as! dateFormat
+            mData = metaDataType(mType: .dateFormat)
         case .numericWithUnitFormat:
-            mData = mData as! numericWithUnitFormat
-            mData = numericWithUnitFormat()
+            //mData = mData as! numericWithUnitFormat
+            mData = metaDataType(mType: .numericWithUnitFormat)
         case .colorFormat:
-            mData = mData as! colorFormat
-            mData = colorFormat()
+            //mData = mData as! colorFormat
+            mData = metaDataType(mType: .colorFormat)
         case .imageFormat:
-            mData = mData as! imageFormat
-            mData = imageFormat()
+            //mData = mData as! imageFormat
+            mData = metaDataType(mType: .imageFormat)
         }
     }
+    */
+}
+
+class metaDataType{
+    var myStructure: metaData.mType
+    
+    init(mType: metaData.mType){
+        self.myStructure = mType
+    }
+    
     struct freeFormat{
         var text:String
         init(){
@@ -81,9 +113,10 @@ class metaData{
     }
 }
 
+/*
 class metaDataFormat {
     var name:String = ""
-    var metaDataType:metaDataFormat
+    var metaDataType:metaData.mType
     var metaDataElement:metaData
     
     init(){
@@ -95,5 +128,7 @@ class metaDataFormat {
         self.name = name
         self.metaDataType = mType
         self.metaDataElement = metaData(type: mType)
+        
+        
     }
-}
+}*/
