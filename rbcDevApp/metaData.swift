@@ -9,7 +9,6 @@
 import UIKit
 
 class metaData{
-    
     enum mType: String{
         case freeFormat             = "freeFormat"
         case numericFormat          = "numericFormat"
@@ -18,26 +17,83 @@ class metaData{
         case colorFormat            = "colorFormat"
         case imageFormat            = "imageFormat"
     }
+    var mData:Any
     
-    var mName: String = ""
-    var metaDataFormat: [[String:Any]] = [[:]]
-    
-    init(name: String, type: mType){
-        self.mName = name
+    init(type: mType){
         switch type {
         case .freeFormat:
-            metaDataFormat.append(["text":"Free text"])
+            mData = mData as! freeFormat
+            mData = freeFormat()
         case .numericFormat:
-            metaDataFormat.append(["value":Double(0.0)])
+            mData = mData as! numericFormat
+            mData = numericFormat()
         case .dateFormat:
-            metaDataFormat.append(["date":Defaults().today])
+            mData = mData as! dateFormat
+            mData = dateFormat()
         case .numericWithUnitFormat:
-            metaDataFormat.append(["value":Double(0.0)])
-            metaDataFormat.append(["unit":"Unit"])
+            mData = mData as! numericWithUnitFormat
+            mData = numericWithUnitFormat()
         case .colorFormat:
-            metaDataFormat.append(["color":UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)])
+            mData = mData as! colorFormat
+            mData = colorFormat()
         case .imageFormat:
-            metaDataFormat.append(["image":Defaults().image])
+            mData = mData as! imageFormat
+            mData = imageFormat()
         }
+    }
+    struct freeFormat{
+        var text:String
+        init(){
+            self.text = Defaults().text
+        }
+    }
+    struct numericFormat{
+        var value: Double
+        init(){
+            self.value = Defaults().num
+        }
+    }
+    struct numericWithUnitFormat{
+        var value: Double
+        var unit: String
+        init(){
+            self.value = Defaults().num
+            self.unit = Defaults().text
+        }
+    }
+    struct colorFormat {
+        var color: UIColor
+        init(){
+            self.color = Defaults().textColor
+        }
+    }
+    struct dateFormat{
+        var date:DateComponents
+        init(){
+            self.date = Defaults().today
+        }
+    }
+    struct imageFormat{
+        var image: UIImage
+        init(){
+            self.image = Defaults().image
+        }
+    }
+}
+
+class metaDataFormat {
+    var name:String = ""
+    var metaDataType:metaDataFormat
+    var metaDataElement:metaData
+    
+    init(){
+        self.name = "untitled"
+        self.metaDataType = metaData.mType.freeFormat
+        self.metaDataElement = metaData(type: metaData.mType.freeFormat)
+    }
+    init(name: String, mType:metaData.mType){
+        self.name = name
+        self.metaDataType = mType
+        self.metaDataElement = metaData(type: mType)
     }
 }

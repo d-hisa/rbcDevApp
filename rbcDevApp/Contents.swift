@@ -11,6 +11,7 @@ import UIKit
 class Contents{
     var conName:String = ""
     var conImage:UIImage = UIImage()
+    var conMetaDataFormatPreset:[metaDataFormat] = []
     var conMetaDataArray: [metaData] = []
     
     ///////////// Constructor /////////////
@@ -27,6 +28,7 @@ class Contents{
         self.conName = name
         self.conImage = image
     }
+    
     ///////////////////////////////////////
     
     func addMetaData(mData:metaData){

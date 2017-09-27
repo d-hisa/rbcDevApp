@@ -21,6 +21,9 @@ class demoDatas {
         conIphone7.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
         conIpad.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
         conAppleWatch.addMetaData(mData: metaData(name: "TypeCode", type: metaData.mType.freeFormat))
+        conIphone7.conMetaDataArray[0]["text"] as! String = ""
+        
+        
         catAppleDevice.addContent(content: conIphone7)
         catAppleDevice.addContent(content: conIpad)
         catAppleDevice.addContent(content: conAppleWatch)

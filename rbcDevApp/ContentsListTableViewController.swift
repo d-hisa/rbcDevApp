@@ -41,15 +41,15 @@ class ContentsListTableViewController: UIViewController, UITableViewDataSource, 
     // MARK: - Table view data source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainText.count
+        return category.catContensArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ContentsListTableViewCell",
             for: indexPath
             ) as! ContentsListTableViewCell
-        cell.mainText.text = mainText[indexPath.row]
-        cell.subText.text = subText[indexPath.row]
+        cell.mainText.text = category.catContensArray[indexPath.row].conName
+        cell.subText.text = category.catContensArray[indexPath.row].conMetaDataArray[0].
         cell.contentImage.image = contentsImage[indexPath.row]
         return cell
     }

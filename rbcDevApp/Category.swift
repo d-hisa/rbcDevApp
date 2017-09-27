@@ -14,6 +14,7 @@ class Category {
     var catTextColor: UIColor = UIColor()
     var catBackColor: UIColor = UIColor()
     var catContensArray: [Contents] = []
+    var metaDataFormatPresetArray:[metaDataFormat] = []
     
     init() {
         self.catName = "untitled"
@@ -27,6 +28,10 @@ class Category {
         self.catCode = code
         self.catBackColor = color
         self.catTextColor = textColor
+    }
+    
+    func addMetaDataFormat2Preset(mdf:metaDataFormat){
+        metaDataFormatPresetArray.append(mdf)
     }
     
     func addContent(content:Contents){
