@@ -66,7 +66,13 @@ class ContentsListViewController: UIViewController {
             .unselectedMenuItemLabelColor(UIColor.gray)
         ]
         
-        
+        let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+        let navBarHeight = self.navigationController?.navigationBar.frame.size.height
+        let tabBarHeight = self.tabBarController?.tabBar.frame.size.height
+        let topArea = statusBarHeight + navBarHeight!
+        let bottomArea = tabBarHeight!
+        print(topArea + bottomArea)
+
         // Initialize page menu with controller array, frame, and optional parameters
         pageMenu = CAPSPageMenu(
             viewControllers: controllerArray,

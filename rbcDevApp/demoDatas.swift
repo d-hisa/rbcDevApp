@@ -76,7 +76,28 @@ class demoDatas {
         catCloth.addContent(content: conTops)
         catCloth.addContent(content: conBottoms)
         catCloth.addContent(content: conSocks)
+        
+        for i in 0..<10 {
+            var conTest:Contents = Contents(name: "cloth" + String(i), image: Defaults().image, category: catCloth)
+            conTest.conMetaDataArray[0].value = Double(i * 1000 + i * i)
+            conTest.conMetaDataArray[0].text = "yen"
+            catCloth.addContent(content: conTest)
+        }
         categoryArray.append(catCloth)
+        
+        // test cat
+        for i in 0..<10 {
+            var catTest: Category = Category(name: "TestC" + String(i), code: "hoge", color: Azusa().blue.main, textColor: Azusa().cream.main)
+            catTest.addMetaData2Preset(md: metaData(name: "lorem", type: metaData.mType.freeFormat))
+            for j in 0..<5 {
+                var conTestOfTests: Contents = Contents(name: "con" + String(j), image: Defaults().image, category: catTest)
+                conTestOfTests.conMetaDataArray[0].text = "conTests" + String(j)
+                catTest.addContent(content: conTestOfTests)
+            }
+            categoryArray.append(catTest)
+        }
+        
+        
         
         
         

@@ -1,0 +1,9 @@
+# TODO
+- UserDefaultsからデータを読み出す
+- CategoryListを作る
+-
+
+
+# Issue
+- ContentListのテーブルの高さをConstraintで調整できるようにする。
+    - 現状ではナビバー、ステータスバー、タブバー、PageMenuのタブの高さの合計値分だけ下にViewがずれて埋まっている状態

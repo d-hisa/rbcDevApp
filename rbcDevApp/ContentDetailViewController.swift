@@ -52,13 +52,13 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
     
     // Cellの数を指定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return thisContent.conMetaDataArray.count
+        return 1    // 1 section に対して1 row
     }
     
     // Cellの内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contentMetadataCell") as! ContentMetadataTableViewCell
-        let mData: metaData = thisContent.conMetaDataArray[indexPath.row]
+        let mData: metaData = thisContent.conMetaDataArray[indexPath.section]
         switch mData.myType {
         case .freeFormat:
             cell.textDataLabel.text = mData.text
