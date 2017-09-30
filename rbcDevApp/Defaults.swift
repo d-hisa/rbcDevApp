@@ -16,7 +16,5 @@ struct Defaults{
     let today: DateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
     let num: Double = 0.0
     init(){
-        //pass
-        
     }
 }

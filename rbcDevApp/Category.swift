@@ -8,13 +8,13 @@
 
 import UIKit
 
-class Category {
+struct Category {
     var catName: String = ""
     var catCode: String = ""
     var catTextColor: UIColor = UIColor()
     var catBackColor: UIColor = UIColor()
     var catContensArray: [Contents] = []
-    var metaDataFormatPresetArray:[metaDataFormat] = []
+    var metaDataPresetArray:[metaData] = []
     
     init() {
         self.catName = "untitled"
@@ -30,11 +30,11 @@ class Category {
         self.catTextColor = textColor
     }
     
-    func addMetaDataFormat2Preset(mdf:metaDataFormat){
-        metaDataFormatPresetArray.append(mdf)
+    mutating func addMetaData2Preset(md:metaData){
+        metaDataPresetArray.append(md)
     }
     
-    func addContent(content:Contents){
+    mutating func addContent(content:Contents){
         catContensArray.append(content)
     }
     

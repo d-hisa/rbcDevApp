@@ -48,12 +48,37 @@ class ContentsListTableViewController: UIViewController, UITableViewDataSource, 
             withIdentifier: "ContentsListTableViewCell",
             for: indexPath
             ) as! ContentsListTableViewCell
-        cell.mainText.text = category.catContensArray[indexPath.row].conName
-        cell.subText.text = category.catContensArray[indexPath.row].conMetaDataArray[0].
-        cell.contentImage.image = contentsImage[indexPath.row]
+        
+        let thisContent:Contents = category.catContensArray[indexPath.row]
+        
+        cell.mainText.text = thisContent.conName
+        
+        switch thisContent.conMetaDataArray[0].myType{
+        case .freeFormat:
+            cell.subText.text = thisContent.conMetaDataArray[0].text
+        case .numericFormat:
+            cell.subText.text = String(thisContent.conMetaDataArray[0].value)
+        case .numericWithUnitFormat:
+            cell.subText.text = String(thisContent.conMetaDataArray[0].value) + " " + thisContent.conMetaDataArray[0].text
+        default:
+            cell.subText.text = "no metadata or missing myType."
+        }
+        
+        
+        
+        
+        if thisContent.conMetaDataArray[0].myType == metaData.mType.freeFormat{
+            cell.subText.text = thisContent.conMetaDataArray[0].text
+        }else if thisContent.conMetaDataArray[0].myType == metaData.mType.numericFormat{
+            cell.subText.text = String(thisContent.conMetaDataArray[0].value)
+        }
+        //cell.subText.text = (category.catContensArray[indexPath.row].conMetaDataArray[0].text
+        cell.contentImage.image = category.catContensArray[indexPath.row].conImage
+        
         return cell
     }
     
+    // セルがタップされたときの挙動
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let storyborad:UIStoryboard = self.storyboard!
         //let detailContentView = storyboard?.instantiateViewController(withIdentifier: "detailContentView") as! ContentDetailViewController
@@ -62,6 +87,7 @@ class ContentsListTableViewController: UIViewController, UITableViewDataSource, 
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // セグエの挙動を制御
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if ((segue.destination as! ContentDetailViewController) != nil){
             let contentDetailViewController = segue.destination as! ContentDetailViewController
