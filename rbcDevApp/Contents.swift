@@ -28,8 +28,8 @@ class Contents{
         self.conName = name
         self.conImage = image
     }
-    
-    ///////////////////////////////////////
+
+///////////////////////////////////////
     
     func addMetaData(mData:metaData){
         conMetaDataArray.append(mData)
