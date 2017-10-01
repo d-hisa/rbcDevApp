@@ -169,6 +169,8 @@ class Azusa{
     }
     
     func getUseTextColor(level: levelNum, colorNum: Int) -> UIColor{
+        
+        
         let row: [Int] = textMainColorMap[level.rawValue]
         let coulmn: Int = row[colorNum]
         switch coulmn {

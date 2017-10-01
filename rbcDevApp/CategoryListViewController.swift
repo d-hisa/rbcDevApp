@@ -8,12 +8,45 @@
 
 import UIKit
 
-class CategoryListViewController: UIViewController {
+class CategoryListViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet var categoryTableView:UITableView!
+    
+    var categoryArray:[Category] = [
+        Category(name: "hoge", code: "22", color: Azusa().cyan.light, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.light, colorNum: Azusa().cyan.num)),
+        Category(name: "fuga", code: "3332", color: Azusa().orange.main, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.main, colorNum: Azusa().orange.num))
+    ]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryListTableViewCell
+        cell.categoryLabel.text = categoryArray[indexPath.row].catName
+        cell.backgroundColor = categoryArray[indexPath.row].catBackColor
+        cell.categoryLabel.textColor = categoryArray[indexPath.row].catTextColor
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "toDetailCategory", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.leftBarButtonItem = editButtonItem
+        categoryTableView.dataSource = self
+        categoryTableView.delegate = self
+        categoryTableView.tableFooterView = UIView()
+        let nib : UINib = UINib(nibName:"CategoryListTableViewCell",bundle: Bundle.main)
+        categoryTableView.register(nib, forCellReuseIdentifier: "CategoryCell")
+        categoryTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +54,34 @@ class CategoryListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // editボタンが押されたらエディットモードへ遷移
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        categoryTableView.isEditing = editing
     }
-    */
+    
+    // 削除可能なセルを設定（すべてを許可）
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // テーブルの元データアレイを更新
+        categoryArray.remove(at: indexPath.row)
+        // テーブルビューを更新
+        categoryTableView.reloadData()
+        //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)
+    }
+    // 移動可能なセルを設定（すべてを許可）
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if ((segue.destination as! CategoryDetailViewController) != nil){
+            // delegate value process
+        }
+    }
+    
 
 }

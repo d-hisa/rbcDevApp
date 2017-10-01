@@ -15,6 +15,9 @@
 		123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA0C1F56875000B31DD6 /* Contents.swift */; };
 		123ECA0F1F56875B00B31DD6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA0E1F56875B00B31DD6 /* Category.swift */; };
 		123ECA111F569D0200B31DD6 /* metaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA101F569D0200B31DD6 /* metaData.swift */; };
+		124A65FF1F7FC69300004A8A /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A65FD1F7FC69300004A8A /* CategoryListTableViewCell.swift */; };
+		124A66001F7FC69300004A8A /* CategoryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124A65FE1F7FC69300004A8A /* CategoryListTableViewCell.xib */; };
+		124A66021F81041300004A8A /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A66011F81041300004A8A /* CategoryDetailViewController.swift */; };
 		1276D1C81F6BA950008371B1 /* demoDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276D1C71F6BA950008371B1 /* demoDatas.swift */; };
 		1276D1CC1F6BC909008371B1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276D1CB1F6BC909008371B1 /* Defaults.swift */; };
 		228C51DD1442746DC259B0B4 /* Pods_rbcDevApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4746BCD37027E01B55D194 /* Pods_rbcDevApp.framework */; };
@@ -51,6 +54,9 @@
 		123ECA0C1F56875000B31DD6 /* Contents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		123ECA0E1F56875B00B31DD6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		123ECA101F569D0200B31DD6 /* metaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = metaData.swift; sourceTree = "<group>"; };
+		124A65FD1F7FC69300004A8A /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
+		124A65FE1F7FC69300004A8A /* CategoryListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListTableViewCell.xib; sourceTree = "<group>"; };
+		124A66011F81041300004A8A /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		1276D1C71F6BA950008371B1 /* demoDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = demoDatas.swift; sourceTree = "<group>"; };
 		1276D1CB1F6BC909008371B1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		1B76DFCCDFE7B34957787622 /* Pods-rbcDevApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rbcDevApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-rbcDevApp/Pods-rbcDevApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		124A65FB1F7F9A5800004A8A /* Contetns */ = {
+			isa = PBXGroup;
+			children = (
+				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
+				ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */,
+				ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */,
+				ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */,
+				ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */,
+				ABA4E5F51F7B856E003F8C0E /* ContentMetadataTableViewCell.swift */,
+				ABA4E5F61F7B856E003F8C0E /* ContentMetadataTableViewCell.xib */,
+			);
+			name = Contetns;
+			sourceTree = "<group>";
+		};
+		124A65FC1F7F9A7400004A8A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
+				124A65FD1F7FC69300004A8A /* CategoryListTableViewCell.swift */,
+				124A65FE1F7FC69300004A8A /* CategoryListTableViewCell.xib */,
+				124A66011F81041300004A8A /* CategoryDetailViewController.swift */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		36B1F3FA7AAC53CC66CB7099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,16 +180,10 @@
 		ABB437A61F67CA2C00D6F699 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
-				ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */,
-				ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */,
-				ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */,
-				ABB437D11F6852AF00D6F699 /* ContentDetailViewController.swift */,
-				ABA4E5F51F7B856E003F8C0E /* ContentMetadataTableViewCell.swift */,
-				ABA4E5F61F7B856E003F8C0E /* ContentMetadataTableViewCell.xib */,
+				124A65FB1F7F9A5800004A8A /* Contetns */,
 				123ECA041F56870300B31DD6 /* AddContentViewController.swift */,
+				124A65FC1F7F9A7400004A8A /* Category */,
 				123ECA061F56871500B31DD6 /* TagListViewController.swift */,
-				123ECA0A1F56873200B31DD6 /* CategoryListViewController.swift */,
 				123ECA081F56872400B31DD6 /* SettingViewController.swift */,
 			);
 			name = ViewControllers;
@@ -266,6 +291,7 @@
 				ABB437CE1F68298200D6F699 /* sample_iphone.jpg in Resources */,
 				ABB437CF1F68298200D6F699 /* sample_ipad.jpg in Resources */,
 				ABB437BF1F67E2E200D6F699 /* icon_tag30.png in Resources */,
+				124A66001F7FC69300004A8A /* CategoryListTableViewCell.xib in Resources */,
 				AB8C409F1F4D50480045F589 /* Main.storyboard in Resources */,
 				ABB437BE1F67E2E200D6F699 /* icon_category30.png in Resources */,
 				ABB437C21F67E2E200D6F699 /* icon_setting30.png in Resources */,
@@ -325,7 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -338,6 +364,7 @@
 				123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */,
 				123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */,
 				123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */,
+				124A66021F81041300004A8A /* CategoryDetailViewController.swift in Sources */,
 				ABB437D21F6852AF00D6F699 /* ContentDetailViewController.swift in Sources */,
 				ABB437AD1F67D0FA00D6F699 /* ColorUitlities.swift in Sources */,
 				ABB437C51F67EBA200D6F699 /* ContentsListTableViewController.swift in Sources */,
@@ -347,6 +374,7 @@
 				123ECA111F569D0200B31DD6 /* metaData.swift in Sources */,
 				123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */,
 				123ECA031F5686E700B31DD6 /* ContentsListViewController.swift in Sources */,
+				124A65FF1F7FC69300004A8A /* CategoryListTableViewCell.swift in Sources */,
 				ABA4E5F71F7B856E003F8C0E /* ContentMetadataTableViewCell.swift in Sources */,
 				1276D1CC1F6BC909008371B1 /* Defaults.swift in Sources */,
 				AB8C409A1F4D50480045F589 /* AppDelegate.swift in Sources */,

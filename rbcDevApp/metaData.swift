@@ -29,9 +29,9 @@ struct metaData {
     init(name: String, type:mType){
         self.name = name
         self.myType = type
-        self.value = Defaults().num
-        self.text = Defaults().text
-        self.image = Defaults().image
+        self.value = 0.0
+        self.text = ""
+        self.image = UIImage()
         self.date = Defaults().today
         self.color = Defaults().backColor
     }

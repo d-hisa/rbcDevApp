@@ -34,6 +34,11 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppper")
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,23 +68,32 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
         case .freeFormat:
             cell.textDataLabel.text = mData.text
             cell.unitDataLabel.text = ""
+            cell.imageDataImageView.isHidden = true
         case .numericFormat:
             cell.textDataLabel.text = String(mData.value)
             cell.unitDataLabel.text = ""
+            cell.imageDataImageView.isHidden = true
         case .numericWithUnitFormat:
             cell.textDataLabel.text = String(mData.value)
             cell.unitDataLabel.text = mData.text
+            cell.imageDataImageView.isHidden = true
         case .imageFormat:
             cell.textDataLabel.text = ""
             cell.unitDataLabel.text = ""
+            cell.imageDataImageView.isHidden = false
             cell.imageDataImageView.image = mData.image
         case .dateFormat:
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ja_JP")
             dateFormatter.dateFormat = "yyyy/MM/dd"
             cell.textDataLabel.text = dateFormatter.string(from: Calendar.current.date(from: mData.date)!)
+            cell.unitDataLabel.text = ""
+            cell.imageDataImageView.isHidden = true
         case .colorFormat:
             cell.backgroundColor = mData.color
+            cell.textDataLabel.text = ""
+            cell.unitDataLabel.text = ""
+            cell.imageDataImageView.isHidden = true
         }
         return cell
     }

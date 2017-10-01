@@ -1,26 +1,20 @@
 //
-//  ContentMetadataTableViewCell.swift
+//  CategoryListTableViewCell.swift
 //  rbcDevApp
 //
-//  Created by nttr on 2017/09/27.
+//  Created by Daiki Hisazawa on 2017/09/30.
 //  Copyright © 2017年 nttr. All rights reserved.
 //
 
 import UIKit
 
-class ContentMetadataTableViewCell: UITableViewCell {
+class CategoryListTableViewCell: UITableViewCell {
 
-    @IBOutlet var textDataLabel: UILabel!
-    @IBOutlet var unitDataLabel: UILabel!
-    @IBOutlet var imageDataImageView: UIImageView!
-    
+    @IBOutlet var categoryLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Imageはデフォルトで隠す
-        self.imageDataImageView.isHidden = true
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
