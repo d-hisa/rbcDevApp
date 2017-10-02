@@ -7,5 +7,6 @@ target 'rbcDevApp' do
 
   # Pods for rbcDevApp
   pod 'PageMenu'
+  pod 'RealmSwift'
 
 end

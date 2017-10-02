@@ -192,8 +192,8 @@
 		ABB437A71F67CA3900D6F699 /* UtilityClasses */ = {
 			isa = PBXGroup;
 			children = (
-				123ECA0C1F56875000B31DD6 /* Contents.swift */,
 				123ECA0E1F56875B00B31DD6 /* Category.swift */,
+				123ECA0C1F56875000B31DD6 /* Contents.swift */,
 				123ECA101F569D0200B31DD6 /* metaData.swift */,
 				1276D1CB1F6BC909008371B1 /* Defaults.swift */,
 				ABB437AC1F67D0FA00D6F699 /* ColorUitlities.swift */,
@@ -311,10 +311,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-rbcDevApp/Pods-rbcDevApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PageMenu/PageMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
