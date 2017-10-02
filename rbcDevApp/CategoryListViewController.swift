@@ -12,6 +12,8 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     
     @IBOutlet var categoryTableView:UITableView!
     
+    let user = UserDefaults.standard
+    
     var categoryArray:[Category] = [
         Category(name: "hoge", code: "22", color: Azusa().cyan.light, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.light, colorNum: Azusa().cyan.num)),
         Category(name: "fuga", code: "3332", color: Azusa().orange.main, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.main, colorNum: Azusa().orange.num))
@@ -41,6 +43,16 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        if let categoryDatas = user.object(forKey: "categoryArray"){
+            print("UserDefaults loaded.")
+            categoryArray = categoryDatas as! [Category]
+        }else{
+            print("UserDefaults [categoryArray] created.")
+            user.set(categoryArray, forKey: "categoryArray")
+        }
+        user.synchronize()
+        
         categoryTableView.dataSource = self
         categoryTableView.delegate = self
         categoryTableView.tableFooterView = UIView()
@@ -48,7 +60,7 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         categoryTableView.register(nib, forCellReuseIdentifier: "CategoryCell")
         categoryTableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,6 +79,9 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // テーブルの元データアレイを更新
         categoryArray.remove(at: indexPath.row)
+        // UserDefaulsも変更
+        user.set(categoryArray, forKey: "category")
+        user.synchronize()
         // テーブルビューを更新
         categoryTableView.reloadData()
         //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)
