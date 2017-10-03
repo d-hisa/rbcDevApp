@@ -12,17 +12,17 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     
     @IBOutlet var categoryTableView:UITableView!
     
-    let user = UserDefaults.standard
-    
     var categoryArray:[Category] = [
         Category(name: "hoge", code: "22", color: Azusa().cyan.light, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.light, colorNum: Azusa().cyan.num)),
         Category(name: "fuga", code: "3332", color: Azusa().orange.main, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.main, colorNum: Azusa().orange.num))
     ]
     
+    // Cellの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryArray.count
     }
     
+    // Cellの表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryListTableViewCell
         cell.categoryLabel.text = categoryArray[indexPath.row].catName
@@ -31,11 +31,13 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         return cell
     }
     
+    // Cellをタップされたときの処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toDetailCategory", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Cellの高さを指定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
@@ -43,15 +45,6 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        if let categoryDatas = user.object(forKey: "categoryArray"){
-            print("UserDefaults loaded.")
-            categoryArray = categoryDatas as! [Category]
-        }else{
-            print("UserDefaults [categoryArray] created.")
-            user.set(categoryArray, forKey: "categoryArray")
-        }
-        user.synchronize()
         
         categoryTableView.dataSource = self
         categoryTableView.delegate = self
@@ -76,12 +69,10 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    // TableViewがEditされたときの処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // テーブルの元データアレイを更新
         categoryArray.remove(at: indexPath.row)
-        // UserDefaulsも変更
-        user.set(categoryArray, forKey: "category")
-        user.synchronize()
         // テーブルビューを更新
         categoryTableView.reloadData()
         //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)
@@ -93,8 +84,20 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if ((segue.destination as! CategoryDetailViewController) != nil){
-            // delegate value process
+        switch segue.identifier {
+        case "toDetailCategory"?:
+            if ((segue.destination as! CategoryDetailViewController) != nil){
+                // delegate value process
+            }
+        case "toAddCategory"?:
+            if ((segue.destination as! CategoryAddViewController) != nil){
+                // delegate value process
+            }
+        
+        case .none:
+            break
+        case .some(_):
+            break
         }
     }
     

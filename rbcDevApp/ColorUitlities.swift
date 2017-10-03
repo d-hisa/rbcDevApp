@@ -184,7 +184,64 @@ class Azusa{
     }
 }
 
-
+struct AZSColor{
+    enum level:Int{
+        case main, pale, light, medium, heavy, dark, _count
+        static let count = _count.rawValue
+    }
+    enum color:Int{
+        case white,cream,navy,gray,cyan,green,blue,orange,red,purple, _count
+        static let count = _count.rawValue
+    }
+    let levelName:[String] = ["main","pale","light","medium","heavy","dark"]
+    let colorName:[String] = ["white","cream","navy","gray","cyan","green","blue","orange","red","purple"]
+    
+    private let azusaHex: [[String]] = [
+        ["#FFFFFF", "#EFEFEF", "#D0D0D0", "#B1B2B1", "#959595", "#6C6C6C"],
+        ["#FDF3DD", "#F9DEA4", "#F4BF57", "#EB8933", "#653D16", "#241808"],
+        ["#363C5D", "#CED1DF", "#9EA4C2", "#939293", "#282C42", "#1B1D2B"],
+        ["#D4D6D8", "#B7BCC0", "#90969C", "#555C63", "#272A2D", "#111113"],
+        ["#3B96F0", "#C0EAFB", "#87D6F9", "#53C1F6", "#2A6AA7", "#1A4267"],
+        ["#48A87E", "#CBF1E5", "#99E1CB", "#6DD4B3", "#337659", "#1F4A38"],
+        ["#49AFCA", "#B7F6FC", "#78EFF9", "#61E8F8", "#337B8D", "#1F4B56"],
+        ["#E97B32", "#FAE3C0", "#F5C986", "#F1AE53", "#AF5825", "#6B3717"],
+        ["#E1333D", "#F6D2D3", "#EFA8AA", "#E98184", "#E1272A", "#961A1C"],
+        ["#A94CBA", "#EBD7F0", "#D5ADDD", "#CA8FD5", "#822495", "#50195B"]
+    ]
+    let textMainColorMap:[[Int]] = [
+        [0,0,0,0,1,1],
+        [0,0,0,0,1,1],
+        [1,0,0,0,1,1],
+        [0,0,0,1,1,1],
+        [1,0,0,0,1,1],
+        [1,0,0,0,1,1],
+        [1,0,0,0,1,1],
+        [1,0,0,0,1,1],
+        [1,0,0,0,1,1],
+        [1,0,0,0,1,1]
+    ]
+    
+    func getColor(color:color, level:level) -> UIColor{
+        return UIColor(hexString: azusaHex[color.rawValue][level.rawValue])
+    }
+    func getColor(colorN:Int, levelN:Int) -> UIColor{
+        return UIColor(hexString: azusaHex[colorN][levelN])
+    }
+    
+    func getTextColor(colorN:Int, levelN:Int) -> UIColor{
+        let isBright:Int = textMainColorMap[colorN][levelN]
+        var resultColor: UIColor
+        switch isBright {
+        case 1:
+            resultColor = getColor(color: .cream, level: .main)
+        case 0:
+            resultColor = getColor(color: .navy, level: .main)
+        default:
+            resultColor = getColor(color: .navy, level: .main)
+        }
+        return resultColor
+    }
+}
 
 // hex指定できるイニシャライザを追加
 extension UIColor {

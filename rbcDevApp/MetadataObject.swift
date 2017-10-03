@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct metaData {
+class MetadataObject: Object {
     enum mType: String{
         case freeFormat             = "freeFormat"
         case numericFormat          = "numericFormat"
@@ -17,16 +18,26 @@ struct metaData {
         case colorFormat            = "colorFormat"
         case imageFormat            = "imageFormat"
     }
-    
-    var name:String
-    var myType: mType
-    var value:Double
-    var text:String
-    var image:UIImage
+    /*
+    var name:String = ""
+    var myType: mType = mType.freeFormat
+    var value:Double = 0.0
+    var text:String = ""
+    var image:UIImage = UIImage()
     var date:DateComponents
     var color:UIColor
+    */
+    convenience required init(){
+        self.init()
+        /*
+        self.date = Defaults().today
+        self.color = Defaults().backColor
+         */
+    }
     
-    init(name: String, type:mType){
+    convenience init(name: String, type:mType){
+        self.init()
+        /*
         self.name = name
         self.myType = type
         self.value = 0.0
@@ -34,36 +45,37 @@ struct metaData {
         self.image = UIImage()
         self.date = Defaults().today
         self.color = Defaults().backColor
+ */
     }
     
     
     
     /*
-    var mData:metaDataType
-    
-    init(type: mType){
-        switch type {
-        case .freeFormat:
-            //mData = mData as! freeFormat
-            mData = metaDataType(mType: .freeFormat)
-        case .numericFormat:
-            //mData = mData as! numericFormat
-            mData = metaDataType(mType: .numericFormat)
-        case .dateFormat:
-            //mData = mData as! dateFormat
-            mData = metaDataType(mType: .dateFormat)
-        case .numericWithUnitFormat:
-            //mData = mData as! numericWithUnitFormat
-            mData = metaDataType(mType: .numericWithUnitFormat)
-        case .colorFormat:
-            //mData = mData as! colorFormat
-            mData = metaDataType(mType: .colorFormat)
-        case .imageFormat:
-            //mData = mData as! imageFormat
-            mData = metaDataType(mType: .imageFormat)
-        }
-    }
-    */
+     var mData:metaDataType
+     
+     init(type: mType){
+     switch type {
+     case .freeFormat:
+     //mData = mData as! freeFormat
+     mData = metaDataType(mType: .freeFormat)
+     case .numericFormat:
+     //mData = mData as! numericFormat
+     mData = metaDataType(mType: .numericFormat)
+     case .dateFormat:
+     //mData = mData as! dateFormat
+     mData = metaDataType(mType: .dateFormat)
+     case .numericWithUnitFormat:
+     //mData = mData as! numericWithUnitFormat
+     mData = metaDataType(mType: .numericWithUnitFormat)
+     case .colorFormat:
+     //mData = mData as! colorFormat
+     mData = metaDataType(mType: .colorFormat)
+     case .imageFormat:
+     //mData = mData as! imageFormat
+     mData = metaDataType(mType: .imageFormat)
+     }
+     }
+     */
 }
 /*
 class metaDataType{
@@ -114,21 +126,22 @@ class metaDataType{
 }
 */
 /*
-class metaDataFormat {
-    var name:String = ""
-    var metaDataType:metaData.mType
-    var metaDataElement:metaData
-    
-    init(){
-        self.name = "untitled"
-        self.metaDataType = metaData.mType.freeFormat
-        self.metaDataElement = metaData(type: metaData.mType.freeFormat)
-    }
-    init(name: String, mType:metaData.mType){
-        self.name = name
-        self.metaDataType = mType
-        self.metaDataElement = metaData(type: mType)
-        
-        
-    }
-}*/
+ class metaDataFormat {
+ var name:String = ""
+ var metaDataType:metaData.mType
+ var metaDataElement:metaData
+ 
+ init(){
+ self.name = "untitled"
+ self.metaDataType = metaData.mType.freeFormat
+ self.metaDataElement = metaData(type: metaData.mType.freeFormat)
+ }
+ init(name: String, mType:metaData.mType){
+ self.name = name
+ self.metaDataType = mType
+ self.metaDataElement = metaData(type: mType)
+ 
+ 
+ }
+ }*/
+
