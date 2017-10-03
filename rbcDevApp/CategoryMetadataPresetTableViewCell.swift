@@ -10,6 +10,12 @@ import UIKit
 
 class CategoryMetadataPresetTableViewCell: UITableViewCell {
 
+    @IBOutlet var numberingLabel:UILabel!
+    @IBOutlet var nameLabel:UILabel!
+    @IBOutlet var formatLabel:UILabel!
+    @IBOutlet var unitLabel:UILabel!
+   
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
