@@ -15,6 +15,7 @@ class CategoryObject: Object {
     dynamic var catTextColorData: NSData = NSData()
     dynamic var catBackColor: UIColor = UIColor()
     dynamic var catBackColorData: NSData = NSData()
+    let metaDataPresets = List<MetadataObject>()
     
     convenience required init() {
         self.init()
