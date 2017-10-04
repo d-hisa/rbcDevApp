@@ -103,6 +103,9 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         let realm = try! Realm()
         //print("indexPath.row: " + String(index))
         //print("realmobjects.count: " + String(realm.objects(CategoryObject.self).count))
+        print(index)
+        print(realm.objects(CategoryObject.self).count)
+        
         if let targetObject:CategoryObject = realm.objects(CategoryObject.self)[index]{
             try! realm.write {
                 realm.delete(targetObject)
@@ -121,11 +124,13 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // テーブルの元データアレイを更新
         category.remove(at: indexPath.row)
+        
         deleteRealm(index: indexPath.row)
         //categoryArray.remove(at: indexPath.row)
         // テーブルビューを更新
         categoryTableView.reloadData()
         //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)
+        categoryTableView.isEditing = false
     }
     // 移動可能なセルを設定（すべてを許可）
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -137,7 +142,8 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         switch segue.identifier {
         case "toDetailCategory"?:
             if ((segue.destination as! CategoryDetailViewController) != nil){
-                // delegate value process
+                let categoryDetailViewController = segue.destination as! CategoryDetailViewController
+                categoryDetailViewController.delegateCategory = category[categoryTableView.indexPathForSelectedRow!.row]
             }
         case "toAddCategory"?:
             if ((segue.destination as! CategoryAddViewController) != nil){

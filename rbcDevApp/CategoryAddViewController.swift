@@ -28,6 +28,7 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    
     var azusaColorNum: Int = 0
     var azusaLevelNum: Int = 0
     var tmpMetadataArray: [tmpMetaData] = []
@@ -46,7 +47,6 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         metadataTableView.tableFooterView = UIView()
         let nib : UINib = UINib(nibName:"CategoryMetadataPresetTableViewCell",bundle: Bundle.main)
         metadataTableView.register(nib, forCellReuseIdentifier: "metaDataPresetCell")
-
     }
     
     // Pickers

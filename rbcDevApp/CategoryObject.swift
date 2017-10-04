@@ -37,11 +37,17 @@ class CategoryObject: Object {
     }
     // Convert
     func convertArray2List(){
+        if metaDataPresetsObjList.count > 0{
+            metaDataPresetsObjList.removeAll()
+        }
         for i in 0..<metaDataPresetsObjArray.count {
             metaDataPresetsObjList.append(metaDataPresetsObjArray[i])
         }
     }
     func convertList2Array(){
+        if metaDataPresetsObjArray.count > 0{
+            metaDataPresetsObjArray.removeAll()
+        }
         for i in 0..<metaDataPresetsObjList.count{
             metaDataPresetsObjArray.append(metaDataPresetsObjList[i])
         }

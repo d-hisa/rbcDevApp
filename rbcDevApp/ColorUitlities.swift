@@ -227,6 +227,12 @@ struct AZSColor{
     func getColor(colorN:Int, levelN:Int) -> UIColor{
         return UIColor(hexString: azusaHex[colorN][levelN])
     }
+//    func decodeColorNum(color:UIColor) -> Int{
+//        
+//    }
+//    func decodeLevelNum(color:UIColor) -> Int{
+//        
+//    }
     
     func getTextColor(colorN:Int, levelN:Int) -> UIColor{
         let isBright:Int = textMainColorMap[colorN][levelN]
