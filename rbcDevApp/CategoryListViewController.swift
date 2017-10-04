@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoryListViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var categoryTableView:UITableView!
+    
+    //var realm = try! Realm()
+    var category:[CategoryObject] = []
     
     var categoryArray:[Category] = [
         Category(name: "hoge", code: "22", color: Azusa().cyan.light, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.light, colorNum: Azusa().cyan.num)),
@@ -19,15 +23,23 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     
     // Cellの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        let realm = try! Realm()
+        return realm.objects(CategoryObject.self).count
+        //return categoryArray.count
     }
     
     // Cellの表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryListTableViewCell
+        cell.categoryLabel.text = category[indexPath.row].catName
+        cell.backgroundColor = category[indexPath.row].catBackColor
+        cell.categoryLabel.textColor = category[indexPath.row].catTextColor
+        
+        /*
         cell.categoryLabel.text = categoryArray[indexPath.row].catName
         cell.backgroundColor = categoryArray[indexPath.row].catBackColor
         cell.categoryLabel.textColor = categoryArray[indexPath.row].catTextColor
+ */
         return cell
     }
     
@@ -41,9 +53,27 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
+    func realm2category()->[CategoryObject]{
+        var catObj:[CategoryObject] = []
+        let realm = try! Realm()
+        let realmObj = realm.objects(CategoryObject.self)
+        for i in 0..<realmObj.count{
+            catObj.append(realmObj[i])
+            catObj[i].decodeData()
+        }
+        return catObj
+    }
+    
+    func updateTableView(){
+        category = realm2category()
+        categoryTableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        category = realm2category()
+        
         navigationItem.leftBarButtonItem = editButtonItem
         
         categoryTableView.dataSource = self
@@ -69,10 +99,30 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    func deleteRealm(index:Int){
+        let realm = try! Realm()
+        //print("indexPath.row: " + String(index))
+        //print("realmobjects.count: " + String(realm.objects(CategoryObject.self).count))
+        if let targetObject:CategoryObject = realm.objects(CategoryObject.self)[index]{
+            try! realm.write {
+                realm.delete(targetObject)
+            }
+        }else{
+            showErrorAlert()
+        }
+    }
+    func showErrorAlert(){
+        let alert = UIAlertController(title: "削除処理に問題が発生しました", message: "再度お試しください", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     // TableViewがEditされたときの処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         // テーブルの元データアレイを更新
-        categoryArray.remove(at: indexPath.row)
+        category.remove(at: indexPath.row)
+        deleteRealm(index: indexPath.row)
+        //categoryArray.remove(at: indexPath.row)
         // テーブルビューを更新
         categoryTableView.reloadData()
         //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)

@@ -14,6 +14,7 @@ struct Defaults{
     let textColor: UIColor = Azusa().navy.main
     let backColor: UIColor = Azusa().white.main
     let today: DateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+    let todayDate = Date()
     let num: Double = 0.0
     init(){
     }

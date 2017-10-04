@@ -126,7 +126,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="save" destination="Aog-Qy-555" eventType="touchUpInside" id="yYl-lh-JdR"/>
+                                    <action selector="saveCategory2Realm" destination="Aog-Qy-555" eventType="touchUpInside" id="739-Kn-gIe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X14-QN-fQm">

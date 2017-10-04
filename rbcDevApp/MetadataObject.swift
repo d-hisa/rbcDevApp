@@ -9,6 +9,20 @@
 import UIKit
 import RealmSwift
 
+class MetadataPresetObject:Object{
+    dynamic var mpName:String = ""
+    dynamic var mpUnit:String = ""
+    dynamic var mpFormat:String = ""
+    dynamic var mpBelongCategory = ""
+    convenience init(name:String,format:String,unit:String, withCategory:String){
+        self.init()
+        self.mpName = name
+        self.mpFormat = format
+        self.mpUnit = unit
+        self.mpBelongCategory = withCategory
+    }
+}
+
 class MetadataObject: Object {
     enum mType: String{
         case freeFormat             = "freeFormat"
@@ -18,130 +32,114 @@ class MetadataObject: Object {
         case colorFormat            = "colorFormat"
         case imageFormat            = "imageFormat"
     }
-    /*
-    var name:String = ""
-    var myType: mType = mType.freeFormat
-    var value:Double = 0.0
-    var text:String = ""
-    var image:UIImage = UIImage()
-    var date:DateComponents
-    var color:UIColor
-    */
-    convenience required init(){
+    dynamic var mName:String = ""
+    dynamic var mType:String = ""
+    dynamic var mValue:Double = 0.0
+    dynamic var mText:String = ""
+    var mImage:UIImage = UIImage()
+    dynamic var mImageData:Data = Data()
+    var mDate:Date = Defaults().todayDate
+    dynamic var mDateData:Data = Data()
+    var mColor:UIColor = UIColor()
+    dynamic var mColorData:Data = Data()
+    
+    override static func ignoredProperties() -> [String] {
+        return ["mImage","mDate","mColor"]
+    }
+    
+    convenience init(
+        name: String,
+        type:String,
+        value:Double,
+        text:String,
+        image:UIImage,
+        date:Date,
+        color:UIColor
+        ){
         self.init()
-        /*
-        self.date = Defaults().today
-        self.color = Defaults().backColor
-         */
+        self.mName = name
+        self.mType = type
+        self.mValue = value
+        self.mText = text
+        self.mImage = image
+        self.mDate = date
+        self.mColor = color
     }
-    
-    convenience init(name: String, type:mType){
+    // freeFormat
+    convenience init(name: String, type:String, text:String){
         self.init()
-        /*
-        self.name = name
-        self.myType = type
-        self.value = 0.0
-        self.text = ""
-        self.image = UIImage()
-        self.date = Defaults().today
-        self.color = Defaults().backColor
- */
+        self.mName = name
+        self.mType = type
+        self.mValue = 0.0
+        self.mText = text
+        self.mImage = UIImage()
+        self.mDate = Date()
+        self.mColor = UIColor()
+    }
+    // numeric
+    convenience init(name: String, type:String, value:Double){
+        self.init()
+        self.mName = name
+        self.mType = type
+        self.mValue = value
+        self.mText = ""
+        self.mImage = UIImage()
+        self.mDate = Date()
+        self.mColor = UIColor()
+    }
+    // numeric with unit
+    convenience init(name: String, type:String, value:Double, text:String){
+        self.init()
+        self.mName = name
+        self.mType = type
+        self.mValue = value
+        self.mText = text
+        self.mImage = UIImage()
+        self.mDate = Date()
+        self.mColor = UIColor()
+    }
+    // image
+    convenience init(name: String, type:String, image:UIImage){
+        self.init()
+        self.mName = name
+        self.mType = type
+        self.mValue = 0.0
+        self.mText = ""
+        self.mImage = image
+        self.mDate = Date()
+        self.mColor = UIColor()
+    }
+    // date
+    convenience init(name: String, type:String, date:Date){
+        self.init()
+        self.mName = name
+        self.mType = type
+        self.mValue = 0.0
+        self.mText = ""
+        self.mImage = UIImage()
+        self.mDate = date
+        self.mColor = UIColor()
+    }
+    // color
+    convenience init(name: String, type:String, color:UIColor){
+        self.init()
+        self.mName = name
+        self.mType = type
+        self.mValue = 0.0
+        self.mText = ""
+        self.mImage = UIImage()
+        self.mDate = Date()
+        self.mColor = color
     }
     
-    
-    
-    /*
-     var mData:metaDataType
-     
-     init(type: mType){
-     switch type {
-     case .freeFormat:
-     //mData = mData as! freeFormat
-     mData = metaDataType(mType: .freeFormat)
-     case .numericFormat:
-     //mData = mData as! numericFormat
-     mData = metaDataType(mType: .numericFormat)
-     case .dateFormat:
-     //mData = mData as! dateFormat
-     mData = metaDataType(mType: .dateFormat)
-     case .numericWithUnitFormat:
-     //mData = mData as! numericWithUnitFormat
-     mData = metaDataType(mType: .numericWithUnitFormat)
-     case .colorFormat:
-     //mData = mData as! colorFormat
-     mData = metaDataType(mType: .colorFormat)
-     case .imageFormat:
-     //mData = mData as! imageFormat
-     mData = metaDataType(mType: .imageFormat)
-     }
-     }
-     */
-}
-/*
-class metaDataType{
-    var myStructure: metaData.mType
-    
-    init(mType: metaData.mType){
-        self.myStructure = mType
+    // Realm格納用に各データをエンコード
+    func encodeData(){
+        self.mImageData = NSKeyedArchiver.archivedData(withRootObject: self.mImage) as Data
+        self.mColorData = NSKeyedArchiver.archivedData(withRootObject: self.mColor) as Data
     }
-    
-    struct freeFormat{
-        var text:String
-        init(){
-            self.text = Defaults().text
-        }
-    }
-    struct numericFormat{
-        var value: Double
-        init(){
-            self.value = Defaults().num
-        }
-    }
-    struct numericWithUnitFormat{
-        var value: Double
-        var unit: String
-        init(){
-            self.value = Defaults().num
-            self.unit = Defaults().text
-        }
-    }
-    struct colorFormat {
-        var color: UIColor
-        init(){
-            self.color = Defaults().textColor
-        }
-    }
-    struct dateFormat{
-        var date:DateComponents
-        init(){
-            self.date = Defaults().today
-        }
-    }
-    struct imageFormat{
-        var image: UIImage
-        init(){
-            self.image = Defaults().image
-        }
+    // Realm展開用に各データをデコード
+    func decodeData(){
+        self.mImage = NSKeyedUnarchiver.unarchiveObject(with: mImageData) as! UIImage
+        self.mColor = NSKeyedUnarchiver.unarchiveObject(with: mColorData) as! UIColor
     }
 }
-*/
-/*
- class metaDataFormat {
- var name:String = ""
- var metaDataType:metaData.mType
- var metaDataElement:metaData
- 
- init(){
- self.name = "untitled"
- self.metaDataType = metaData.mType.freeFormat
- self.metaDataElement = metaData(type: metaData.mType.freeFormat)
- }
- init(name: String, mType:metaData.mType){
- self.name = name
- self.metaDataType = mType
- self.metaDataElement = metaData(type: mType)
- 
- 
- }
- }*/
-

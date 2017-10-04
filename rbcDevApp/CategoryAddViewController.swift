@@ -26,12 +26,13 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
             self.format = format
             self.unit = unit
         }
-        
     }
     
     var azusaColorNum: Int = 0
     var azusaLevelNum: Int = 0
     var tmpMetadataArray: [tmpMetaData] = []
+    var MetadataPresetObjArray: [MetadataPresetObject] = []
+    var MetadataPresetArray:[MetadataObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,6 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pickerColorLevel.delegate = self
         pickerColorName.dataSource = self
         pickerColorName.delegate = self
-        
         metadataTableView.tableFooterView = UIView()
         let nib : UINib = UINib(nibName:"CategoryMetadataPresetTableViewCell",bundle: Bundle.main)
         metadataTableView.register(nib, forCellReuseIdentifier: "metaDataPresetCell")
@@ -93,14 +93,14 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return 100
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tmpMetadataArray.count
+        return MetadataPresetObjArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "metaDataPresetCell", for: indexPath) as! CategoryMetadataPresetTableViewCell
         cell.numberingLabel.text = String(indexPath.row + 1)
-        cell.nameLabel.text = tmpMetadataArray[indexPath.row].name
-        cell.formatLabel.text = tmpMetadataArray[indexPath.row].format
-        cell.unitLabel.text = tmpMetadataArray[indexPath.row].unit
+        cell.nameLabel.text = MetadataPresetObjArray[indexPath.row].mpName
+        cell.formatLabel.text = MetadataPresetObjArray[indexPath.row].mpFormat
+        cell.unitLabel.text = MetadataPresetObjArray[indexPath.row].mpUnit
         return cell
     }
     // Cellをタップしたとき
@@ -121,18 +121,106 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Saveボタンを押したときの挙動
-    @IBAction func save(){
-        // save process
-        self.dismiss(animated: true, completion: nil)
+    func setCategoryName(category:CategoryObject){
+        category.catName = titleTextField.text!
+        for i in 0..<MetadataPresetObjArray.count{
+            MetadataPresetObjArray[i].mpBelongCategory = category.catName
+        }
     }
+    // Saveボタンを押したときの挙動
+    // カテゴリをRealmDBへ保存
+    @IBAction func saveCategory2Realm(){
+        if titleTextField.text! == ""{
+            showErrorAlert(num: 1)
+            return
+        }
+        let realm = try! Realm()
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        let categoryObject: CategoryObject = CategoryObject()
+        setCategoryName(category: categoryObject)
+        categoryObject.catBackColor = sampleColorLabel.backgroundColor!
+        categoryObject.catTextColor = sampleColorLabel.textColor!
+        //convertTmp2Obj()
+        categoryObject.metaDataPresetsObjArray = MetadataPresetObjArray
+        categoryObject.encodeData()
+        
+        if let result:Results = realm.objects(CategoryObject.self).filter("catName like '" + categoryObject.catName + "'"){
+            if result.count > 0{
+                showErrorAlert(num: 0)
+                return
+            }else{
+                try! realm.write {
+                    realm.add(categoryObject)
+                }
+            }
+        }else{
+            showErrorAlert(num: 99)
+            return
+        }
+
+        /*
+        try! realm.write {
+            realm.add(categoryObject)
+        }*/
+        // 親VCを取り出し、テーブルのビュー更新処理を叩く
+        //let ppvc = presentingViewController as! CategoryListViewController
+        let tab = self.presentingViewController as? UITabBarController
+        let nav = tab?.selectedViewController as? UINavigationController
+        let vc = nav?.viewControllers.last as! CategoryListViewController
+        vc.updateTableView()
+        /*
+        if let parentVC = presentingViewController as! CategoryListViewController!{
+            parentVC.updateTableView()
+        }*/
+        
+        
+        self.dismiss(animated: true, completion: nil)
+        /*
+        let result:Results = realm.objects(CategoryObject.self).filter("catName like " + categoryObject.catName)
+        //print(result)
+        if result.count > 0{
+            showErrorAlert()
+        }else{
+            try! realm.write {
+                realm.add(categoryObject)
+            }
+            self.dismiss(animated: true, completion: nil)
+        }*/
+    }
+    
+    func showErrorAlert(num:Int){
+        var title: String = ""
+        var message:String = ""
+        switch num {
+        case 0:
+            title = "カテゴリ名が重複しています！"
+            message = "カテゴリ名はユニークでなければなりません"
+        case 1:
+            title = "カテゴリ名が未入力です"
+            message = "カテゴリ名は他と重複しないユニークな名称を設定してください"
+        default:
+            title = "不明なエラーです"
+            message = "開発者にお問い合わせください"
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        //よくわからんおまじない
+        alert.view.setNeedsLayout()
+        // アラートを画面に表示
+        self.present(alert, animated: true, completion: nil)
+        metadataTableView.reloadData()
+    }
+    
     // メタデータ追加ボタン
     @IBAction func addMetadata(){
-        let defaultMetadata:tmpMetaData = tmpMetaData(
-            name: "metadata" + String(tmpMetadataArray.count + 1),
+        let defaultMetadata:MetadataPresetObject = MetadataPresetObject(
+            name: "metadata" + String(MetadataPresetObjArray.count + 1),
             format: "none",
-            unit: "-")
-        tmpMetadataArray.append(defaultMetadata)
+            unit: "-",
+            withCategory: "")
+        MetadataPresetObjArray.append(defaultMetadata)
         metadataTableView.reloadData()
     }
     // metadataをAlertでセットする
@@ -146,55 +234,55 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // 各種フォーマットボタンの設定
         let freeFomratAction = UIAlertAction(title: "Free Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit = "-"
-            self.tmpMetadataArray[selectedRow].format = "freeFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit = "-"
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "freeFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(freeFomratAction)
         let numericFomratAction = UIAlertAction(title: "Numeric Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit = "-"
-            self.tmpMetadataArray[selectedRow].format = "numericFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit = "-"
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "numericFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(numericFomratAction)
         let numericWithUnitFomratAction = UIAlertAction(title: "Numeric with Unit Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit =  alert.textFields![1].text!
-            self.tmpMetadataArray[selectedRow].format = "numericWithUnitFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit =  alert.textFields![1].text!
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "numericWithUnitFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(numericWithUnitFomratAction)
         let dateFomratAction = UIAlertAction(title: "Date Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit = "-"
-            self.tmpMetadataArray[selectedRow].format = "dateFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit = "-"
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "dateFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(dateFomratAction)
         let colorFomratAction = UIAlertAction(title: "Color Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit = "-"
-            self.tmpMetadataArray[selectedRow].format = "colorFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit = "-"
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "colorFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(colorFomratAction)
         let imageFomratAction = UIAlertAction(title: "Image Format", style: .default, handler: {
             (action:UIAlertAction!) -> Void in
-            self.tmpMetadataArray[selectedRow].name =  alert.textFields![0].text!
-            self.tmpMetadataArray[selectedRow].unit = "-"
-            self.tmpMetadataArray[selectedRow].format = "imageFormat"
+            self.MetadataPresetObjArray[selectedRow].mpName =  alert.textFields![0].text!
+            self.MetadataPresetObjArray[selectedRow].mpUnit = "-"
+            self.MetadataPresetObjArray[selectedRow].mpFormat = "imageFormat"
             self.metadataTableView.reloadData()
         })
         alert.addAction(imageFomratAction)
 
         // キャンセルボタンの設定
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         alert.addAction(cancelAction)
         
         // テキストフィールドを追加
@@ -204,13 +292,6 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
             textField.placeholder = "Unit"
         })
-        
-        
-        // 複数追加したいならその数だけ書く
-        // alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
-        //     textField.placeholder = "テキスト"
-        // })
-        
         //よくわからんおまじない
         alert.view.setNeedsLayout()
         // アラートを画面に表示
@@ -227,15 +308,37 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         label.isEnabled = true
         label.textColor = UIColor.black
     }
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    func convertTmp2Obj(){
+        for i in 0..<tmpMetadataArray.count {
+            let name:String = tmpMetadataArray[i].name
+            let type:String = tmpMetadataArray[i].format
+            let unit:String = tmpMetadataArray[i].unit
+            
+            let mType = MetadataObject.mType.self
+            var mData:MetadataPresetObject
+            switch type{
+            case mType.freeFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, text: "")
+                MetadataPresetArray.append(mData)
+            case mType.numericFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, value: 0.0)
+                MetadataPresetArray.append(mData)
+            case mType.numericWithUnitFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, value: 0.0, text: unit)
+                MetadataPresetArray.append(mData)
+            case mType.dateFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, date: Date())
+                MetadataPresetArray.append(mData)
+            case mType.imageFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, image: Defaults().image)
+            case mType.colorFormat.rawValue:
+                mData = MetadataObject(name: name, type: type, color: Defaults().backColor)
+            default:
+                mData = MetadataObject(name: name, type: type, text: "")
+                MetadataPresetArray.append(mData)
+            }
+        }
+    }*/
 
 }
