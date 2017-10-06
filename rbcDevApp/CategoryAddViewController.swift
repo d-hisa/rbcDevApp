@@ -221,6 +221,10 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
             unit: "-",
             withCategory: "")
         MetadataPresetObjArray.append(defaultMetadata)
+        let nos = metadataTableView.numberOfSections
+        let nor = metadataTableView.numberOfRows(inSection: nos-1)
+        let lastPath:IndexPath = IndexPath(row: nor-1, section: nos-1)
+        metadataTableView.scrollToRow( at: lastPath , at: .bottom, animated: true)
         metadataTableView.reloadData()
     }
     // metadataをAlertでセットする

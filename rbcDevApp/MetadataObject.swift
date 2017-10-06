@@ -13,7 +13,7 @@ class MetadataPresetObject:Object{
     dynamic var mpName:String = ""
     dynamic var mpUnit:String = ""
     dynamic var mpFormat:String = ""
-    dynamic var mpBelongCategory = ""
+    dynamic var mpBelongCategory:String = ""
     convenience init(name:String,format:String,unit:String, withCategory:String){
         self.init()
         self.mpName = name
@@ -42,6 +42,7 @@ class MetadataObject: Object {
     dynamic var mDateData:Data = Data()
     var mColor:UIColor = UIColor()
     dynamic var mColorData:Data = Data()
+    dynamic var mBelongingContent:String = ""
     
     override static func ignoredProperties() -> [String] {
         return ["mImage","mDate","mColor"]

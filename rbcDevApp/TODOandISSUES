@@ -9,3 +9,6 @@
     - 現状ではナビバー、ステータスバー、タブバー、PageMenuのタブの高さの合計値分だけ下にViewがずれて埋まっている状態
 
 カテゴリ名は重複排除すること
+
+Realm Dir
+/Users/daikihisazawa/Library/Developer/CoreSimulator/Devices/9CBEB959-E100-44A0-9082-1F4649051C29/data/Containers/Data/Application/5EDB24B3-06BB-4489-908C-E3542B0F818C/Documents/default.realm

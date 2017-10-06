@@ -43,7 +43,7 @@ class ContentsListViewController: UIViewController {
             controllerArray.append(controller)
         }*/
 
-        var parameters: [CAPSPageMenuOption] = [
+        let parameters: [CAPSPageMenuOption] = [
             // テキストタイトルの幅にタブ幅を追従
             .menuItemWidthBasedOnTitleTextWidth(true),
             // スクロールメニューの背景色

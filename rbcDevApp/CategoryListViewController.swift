@@ -57,6 +57,7 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     func realm2category()->[CategoryObject]{
         var catObj:[CategoryObject] = []
         let realm = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         let realmObj = realm.objects(CategoryObject.self)
         for i in 0..<realmObj.count{
             catObj.append(realmObj[i])
@@ -107,8 +108,10 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         print(realm.objects(CategoryObject.self).count)
         
         if let targetObject:CategoryObject = realm.objects(CategoryObject.self)[index]{
+            let targetRelationObjects = realm.objects(MetadataPresetObject.self).filter("mpBelongCategory like '" + targetObject.catName + "'")
             try! realm.write {
                 realm.delete(targetObject)
+                realm.delete(targetRelationObjects)
             }
         }else{
             showErrorAlert()

@@ -13,36 +13,47 @@ class ContentObject: Object{
     dynamic var conName:String = ""
     var conImage:UIImage = UIImage()
     dynamic var conImageData: Data = Data()
-    //var conMetaDataFormatPreset:[metaDataFormat] = []
-    var conMetadataArray: [metaData] = []
-    let conMetadataList = List<MetadataObject>()
+    dynamic var conBelongingCategory:String = ""
+    var conMetadataObjArray: [MetadataObject] = []
+    let conMetadataObjList = List<MetadataObject>()
     
     override static func ignoredProperties() -> [String] {
-        return ["conImage","conMetadataArray"]
-    }
-    ///////////// Constructor /////////////
-    /*
-    convenience init(){
-        self.init()
-        self.conName = "untitled"
-        self.conImage = Defaults().image
+        return ["conImage","conMetadataObjArray"]
     }
     
-    convenience init(name: String){
+    convenience init(name:String, withCat:String){
         self.init()
         self.conName = name
-        self.conImage = Defaults().image
+        self.conBelongingCategory = withCat
     }
-    convenience init(name: String, image: UIImage, category: Category){
-        self.init()
-        self.conName = name
-        self.conImage = image
-        self.conMetaDataArray = category.metaDataPresetArray
-        //self.conMetaDataFormatPreset = category.metaDataFormatPresetArray
-    }*/
     
-    ///////////////////////////////////////
-    
+    // Convert
+    func convertArray2List(){
+        if conMetadataObjList.count > 0{
+            conMetadataObjList.removeAll()
+        }
+        for i in 0..<conMetadataObjArray.count {
+            conMetadataObjList.append(conMetadataObjArray[i])
+        }
+    }
+    func convertList2Array(){
+        if conMetadataObjArray.count > 0{
+            conMetadataObjArray.removeAll()
+        }
+        for i in 0..<conMetadataObjList.count{
+            conMetadataObjArray.append(conMetadataObjList[i])
+        }
+    }
+    // Realm格納用に各データをエンコード
+    func encodeData(){
+        self.conImageData = NSKeyedArchiver.archivedData(withRootObject: self.conImage) as Data
+        convertArray2List()
+    }
+    // Realm展開用に各データをデコード
+    func decodeData(){
+        self.conImage = (NSKeyedUnarchiver.unarchiveObject(with: self.conImageData) as? UIImage)!
+        convertList2Array()
+    }
     
 }
 

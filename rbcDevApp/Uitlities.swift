@@ -8,26 +8,31 @@
 
 import UIKit
 
-class colorUtilities{
-    let modernColorsOfHex:[String] = [
-        
-    ]
-    var modernColors:[UIColor] = []
-    
-    func initModernColors(){
-        modernColors.append(UIColor(red:0,green:0,blue:0,alpha:1.0))
-        
+extension Date{
+    func date2stringY4M2D2sepSrash() -> String{
+        let dateformater:DateFormatter = DateFormatter()
+        dateformater.calendar = Calendar(identifier: .gregorian)
+        dateformater.dateFormat = "yyyy/MM/dd"
+        return dateformater.string(from: self)
+    }
+}
+
+class util{
+    func date2string(date:Date)->String{
+        let dateformater:DateFormatter = DateFormatter()
+        dateformater.calendar = Calendar(identifier: .gregorian)
+        dateformater.dateFormat = "yyyy/MM/dd"
+        return dateformater.string(from:date)
     }
     
-    func randColor() -> UIColor{
-        let r: CGFloat = CGFloat(arc4random_uniform(255)+1) / 255.0
-        let g: CGFloat = CGFloat(arc4random_uniform(255)+1) / 255.0
-        let b: CGFloat = CGFloat(arc4random_uniform(255)+1) / 255.0
-        let color: UIColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
-        return color
-    }
-    func randModernColor() -> UIColor{
-        return self.modernColors[Int(arc4random_uniform(UInt32(modernColors.count)))]
+    func showErrorAlert(title:String,message:String,vc:UIViewController){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        //よくわからんおまじない
+        alert.view.setNeedsLayout()
+        // アラートを画面に表示
+        vc.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -267,5 +272,16 @@ extension UIColor {
             (a, r, g, b) = (255, 0, 0, 0)
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
+    func convertToRGB(_ color: UIColor) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let components = color.cgColor.components! // UIColorをCGColorに変換し、RGBとAlphaがそれぞれCGFloatで配列として取得できる
+        return (red: components[0], green: components[1], blue: components[2], alpha: components[3])
+    }
+    var coreImageColor: CIColor {
+        return CIColor(color: self)
+    }
+    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let coreImageColor = self.coreImageColor
+        return (coreImageColor.red, coreImageColor.green, coreImageColor.blue, coreImageColor.alpha)
     }
 }
