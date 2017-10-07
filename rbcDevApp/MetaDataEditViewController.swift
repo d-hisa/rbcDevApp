@@ -75,6 +75,15 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
     }
     
     func initViewParts(){
+        // common sets
+        textField.text = metadata.mText
+        datePicker.setDate(metadata.mDate, animated: true)
+        rSlider.setValue(metadata.mColor.componentsF.redF, animated: true)
+        bSlider.setValue(metadata.mColor.componentsF.greenF, animated: true)
+        gSlider.setValue(metadata.mColor.componentsF.blueF, animated: true)
+        sampleColorLabel.backgroundColor = metadata.mColor
+        imageDataView.image = metadata.mImage
+
         let type = MetadataObject.mType.self
         let thisType:String = metadata.mType
         switch thisType{
@@ -251,7 +260,8 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
         bSlider.value = Float(bgColor.components.blue * 255)
         onRGBChange()
     }
-    // Pickers
+    
+    // ImagePIcker
     func imageViewTapped(_ sender: UITapGestureRecognizer) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let pickerView = UIImagePickerController()
@@ -266,8 +276,30 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
         self.dismiss(animated: true)
     }
     
-    @IBAction func okTap(){
-            
+    @IBAction func okTap(){        
+        let type = MetadataObject.mType.self
+        let thisType:String = metadata.mType
+        switch thisType{
+        case type.freeFormat.rawValue:
+            metadata.mText = textField.text!
+        case type.numericFormat.rawValue:
+            metadata.mValue = Double(textField.text!)!
+        case type.numericWithUnitFormat.rawValue:
+            metadata.mValue = Double(textField.text!)!
+        case type.dateFormat.rawValue:
+            metadata.mDate = datePicker.date
+        case type.imageFormat.rawValue:
+            metadata.mImage = imageDataView.image!
+        case type.colorFormat.rawValue:
+            metadata.mColor = sampleColorLabel.backgroundColor!
+        default:
+            metadata.mText = textField.text!
+        }
+        let tab = self.presentingViewController as? UITabBarController
+        let nav = tab?.selectedViewController as? UINavigationController
+        let vc = nav?.viewControllers.last as! InputContentDataViewController
+        vc.updateTableView()
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelTap(){
         self.dismiss(animated: true, completion: nil)

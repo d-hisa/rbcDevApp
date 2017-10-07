@@ -197,7 +197,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X14-QN-fQm">
-                                <rect key="frame" x="16" y="576" width="343" height="36"/>
+                                <rect key="frame" x="16" y="576" width="342" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add New MetaData"/>
@@ -436,13 +436,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="カテゴリを登録してください▼" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvv-DM-HKU">
+                                <rect key="frame" x="71" y="579" width="279" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select Category" id="byO-jy-bhn"/>
                     <connections>
                         <outlet property="categoryTableView" destination="8Dn-9y-GsR" id="TKs-EP-S6P"/>
+                        <outlet property="noticeLabel" destination="Fvv-DM-HKU" id="uZ5-01-aRo"/>
                         <segue destination="aHC-Yk-b8W" kind="show" identifier="toAddContent" id="L29-Rr-qC9"/>
+                        <segue destination="XTf-3h-pum" kind="unwind" unwindAction="unwindToAddMenuWithSegue:" id="VuF-XV-S0U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdf-ca-aZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -522,12 +532,12 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Y4-CO-BYV">
-                                <rect key="frame" x="16" y="574" width="343" height="36"/>
+                                <rect key="frame" x="13" y="574" width="346" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
-                                    <action selector="addMetadata" destination="Aog-Qy-555" eventType="touchUpInside" id="6Sx-hG-yEh"/>
+                                    <action selector="saveContent" destination="aHC-Yk-b8W" eventType="touchUpInside" id="eGV-Ne-ETE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -539,9 +549,11 @@
                         <outlet property="metadataTableView" destination="bhe-qi-Wu8" id="IdS-Hc-Lui"/>
                         <outlet property="titleField" destination="hud-o8-FCC" id="r2Z-X9-b8O"/>
                         <segue destination="wPK-SR-Iee" kind="presentation" identifier="toMetadataEditModal" id="bWT-TX-o2d"/>
+                        <segue destination="XTf-3h-pum" kind="unwind" identifier="returnAddContentView" unwindAction="unwindToAddMenuWithSegue:" id="1O0-hh-fpw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCA-ZN-tIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XTf-3h-pum" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2368.8000000000002" y="373.76311844077964"/>
         </scene>
@@ -788,10 +800,10 @@
             </objects>
             <point key="canvasLocation" x="896.79999999999995" y="-1306.5967016491754"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Common Tab Bar Controller-->
         <scene sceneID="iMR-yA-gE7">
             <objects>
-                <tabBarController id="J4d-vj-r1u" sceneMemberID="viewController">
+                <tabBarController id="J4d-vj-r1u" customClass="CommonTabBarController" customModule="rbcDevApp" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="96o-xh-Z20">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

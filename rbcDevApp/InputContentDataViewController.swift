@@ -41,7 +41,7 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
                 case type.numericWithUnitFormat.rawValue:
                     tempMetadataObjArray.append(MetadataObject(name: mName, type: type.numericWithUnitFormat.rawValue, value: 0, text: mUnit))
                 case type.dateFormat.rawValue:
-                    tempMetadataObjArray.append(MetadataObject(name: mName, type: type.dateFormat.rawValue, date: Defaults().zeroDate))
+                    tempMetadataObjArray.append(MetadataObject(name: mName, type: type.dateFormat.rawValue, date: Defaults().todayDate))
                 case type.imageFormat.rawValue:
                     tempMetadataObjArray.append(MetadataObject(name: mName, type: type.imageFormat.rawValue, image: UIImage()))
                 case type.colorFormat.rawValue:
@@ -85,11 +85,11 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
         self.contentImage.image = image
         // 写真を選ぶビューを引っ込める
         self.dismiss(animated: true)
+        metadataTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -145,8 +145,11 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
         selectedIndexPathRow = indexPath.row
         self.performSegue(withIdentifier: "toMetadataEditModal", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
+    func updateTableView(){
+        metadataTableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "toMetadataEditModal"?:
@@ -160,8 +163,6 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
             break
         }
     }
-
-    
     
     @IBAction func saveContent(){
         if titleField.text! == ""{
@@ -172,33 +173,22 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
         let contentObj:ContentObject = ContentObject()
         contentObj.conName = titleField.text!
         contentObj.conImage = contentImage.image!
+        for tMOA in tempMetadataObjArray{tMOA.mBelongingContent = contentObj.conName}
         contentObj.conBelongingCategory = categoryObj.catName
         contentObj.conMetadataObjArray = tempMetadataObjArray
         contentObj.encodeData()
-        //if let result:Results = realm.objects(C)
-        
-        /*
-         let contentObject: ContentsObject = ContentsObject()
-         setCategoryName(category: categoryObject)
-         categoryObject.catBackColor = sampleColorLabel.backgroundColor!
-         categoryObject.catTextColor = sampleColorLabel.textColor!
-         //convertTmp2Obj()
-         categoryObject.metaDataPresetsObjArray = MetadataPresetObjArray
-         categoryObject.encodeData()
-         
-         if let result:Results = realm.objects(CategoryObject.self).filter("catName like '" + categoryObject.catName + "'"){
-         if result.count > 0{
-         showErrorAlert(num: 0)
-         return
-         }else{
-         try! realm.write {
-         realm.add(categoryObject)
-         }
-         }
-         }else{
-         showErrorAlert(num: 99)
-         return
-         }*/
+        try! realm.write {
+            realm.add(contentObj)
+        }
+        let alert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: {
+            // アラートを閉じる
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                alert.dismiss(animated: true, completion: nil)
+                self.performSegue(withIdentifier: "returnAddContentView", sender: self)
+            })
+        })
+        //self.performSegue(withIdentifier: "returnAddContentView", sender: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {

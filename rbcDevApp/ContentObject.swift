@@ -46,12 +46,14 @@ class ContentObject: Object{
     }
     // Realm格納用に各データをエンコード
     func encodeData(){
-        self.conImageData = NSKeyedArchiver.archivedData(withRootObject: self.conImage) as Data
+        //self.conImageData = NSKeyedArchiver.archivedData(withRootObject: self.conImage) as Data
+        self.conImageData = conImage.convertImage2DataWithArchiving(maxKB: 100)
         convertArray2List()
     }
     // Realm展開用に各データをデコード
     func decodeData(){
-        self.conImage = (NSKeyedUnarchiver.unarchiveObject(with: self.conImageData) as? UIImage)!
+        //self.conImage = (NSKeyedUnarchiver.unarchiveObject(with: self.conImageData) as? UIImage)!
+        self.conImage = UIImage(data: conImageData)!
         convertList2Array()
     }
     

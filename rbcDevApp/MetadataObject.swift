@@ -75,7 +75,7 @@ class MetadataObject: Object {
         self.mText = text
         self.mImage = UIImage()
         self.mDate = Date()
-        self.mColor = UIColor()
+        self.mColor = UIColor.white
     }
     // numeric
     convenience init(name: String, type:String, value:Double){
@@ -86,7 +86,7 @@ class MetadataObject: Object {
         self.mText = ""
         self.mImage = UIImage()
         self.mDate = Date()
-        self.mColor = UIColor()
+        self.mColor = UIColor.white
     }
     // numeric with unit
     convenience init(name: String, type:String, value:Double, text:String){
@@ -97,7 +97,7 @@ class MetadataObject: Object {
         self.mText = text
         self.mImage = UIImage()
         self.mDate = Date()
-        self.mColor = UIColor()
+        self.mColor = UIColor.white
     }
     // image
     convenience init(name: String, type:String, image:UIImage){
@@ -108,7 +108,7 @@ class MetadataObject: Object {
         self.mText = ""
         self.mImage = image
         self.mDate = Date()
-        self.mColor = UIColor()
+        self.mColor = UIColor.white
     }
     // date
     convenience init(name: String, type:String, date:Date){
@@ -119,7 +119,7 @@ class MetadataObject: Object {
         self.mText = ""
         self.mImage = UIImage()
         self.mDate = date
-        self.mColor = UIColor()
+        self.mColor = UIColor.white
     }
     // color
     convenience init(name: String, type:String, color:UIColor){
@@ -135,12 +135,14 @@ class MetadataObject: Object {
     
     // Realm格納用に各データをエンコード
     func encodeData(){
-        self.mImageData = NSKeyedArchiver.archivedData(withRootObject: self.mImage) as Data
+        //self.mImageData = NSKeyedArchiver.archivedData(withRootObject: self.mImage) as Data
+        self.mImageData = self.mImage.convertImage2DataWithArchiving(maxKB: 100)
         self.mColorData = NSKeyedArchiver.archivedData(withRootObject: self.mColor) as Data
     }
     // Realm展開用に各データをデコード
     func decodeData(){
-        self.mImage = NSKeyedUnarchiver.unarchiveObject(with: mImageData) as! UIImage
+        //self.mImage = NSKeyedUnarchiver.unarchiveObject(with: mImageData) as! UIImage
+        self.mImage = UIImage(data: self.mImageData)!
         self.mColor = NSKeyedUnarchiver.unarchiveObject(with: mColorData) as! UIColor
     }
 }

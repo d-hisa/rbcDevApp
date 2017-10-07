@@ -30,9 +30,6 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
         contentMetadataTableView.delegate = self
         let nib = UINib(nibName: "ContentMetadataTableViewCell", bundle: Bundle.main)
         contentMetadataTableView.register(nib, forCellReuseIdentifier: "contentMetadataCell")
-        
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,7 +39,6 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Sectionの数を設定

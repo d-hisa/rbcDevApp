@@ -284,4 +284,28 @@ extension UIColor {
         let coreImageColor = self.coreImageColor
         return (coreImageColor.red, coreImageColor.green, coreImageColor.blue, coreImageColor.alpha)
     }
+    var componentsF: (redF: CFloat, greenF: Float, blueF: Float, alphaF: Float) {
+        let coreImageColor = self.coreImageColor
+        return (Float(coreImageColor.red), Float(coreImageColor.green),Float(coreImageColor.blue),Float(coreImageColor.alpha))
+    }
+}
+extension UIImage{
+    func convertImage2DataWithArchiving(maxKB:Int)->Data{
+        var quality:CGFloat = 1.0
+        var thisImageData:Data = UIImageJPEGRepresentation(self, quality)!
+        var thisImageDataKByte:Int = (thisImageData.count / 1024) / 1024
+        /*
+        let bcf: ByteCountFormatter = ByteCountFormatter()
+        bcf.allowedUnits = .useKB
+        bcf.countStyle = .file
+        let thisImageDataKByte:String = bcf.string(fromByteCount: Int64(thisImageData.count))
+         */
+        print(thisImageDataKByte)
+        while (thisImageDataKByte > maxKB){
+            quality = quality - 0.2
+            thisImageData = UIImageJPEGRepresentation(self, quality)!
+            thisImageDataKByte = thisImageData.count / 1024 / 1024
+        }
+        return thisImageData
+    }
 }

@@ -12,20 +12,12 @@ import RealmSwift
 class CategoryListViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var categoryTableView:UITableView!
-    
-    //var realm = try! Realm()
+
     var category:[CategoryObject] = []
-    
-    var categoryArray:[Category] = [
-        Category(name: "hoge", code: "22", color: Azusa().cyan.light, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.light, colorNum: Azusa().cyan.num)),
-        Category(name: "fuga", code: "3332", color: Azusa().orange.main, textColor: Azusa().getUseTextColor(level: Azusa.levelNum.main, colorNum: Azusa().orange.num))
-    ]
-    
     // Cellの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let realm = try! Realm()
         return realm.objects(CategoryObject.self).count
-        //return categoryArray.count
     }
     
     // Cellの表示
@@ -34,12 +26,6 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         cell.categoryLabel.text = category[indexPath.row].catName
         cell.backgroundColor = category[indexPath.row].catBackColor
         cell.categoryLabel.textColor = category[indexPath.row].catTextColor
-        
-        /*
-        cell.categoryLabel.text = categoryArray[indexPath.row].catName
-        cell.backgroundColor = categoryArray[indexPath.row].catBackColor
-        cell.categoryLabel.textColor = categoryArray[indexPath.row].catTextColor
- */
         return cell
     }
     
@@ -102,16 +88,26 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
     }
     func deleteRealm(index:Int){
         let realm = try! Realm()
-        //print("indexPath.row: " + String(index))
-        //print("realmobjects.count: " + String(realm.objects(CategoryObject.self).count))
         print(index)
         print(realm.objects(CategoryObject.self).count)
         
         if let targetObject:CategoryObject = realm.objects(CategoryObject.self)[index]{
-            let targetRelationObjects = realm.objects(MetadataPresetObject.self).filter("mpBelongCategory like '" + targetObject.catName + "'")
+            // 消す対象のカテゴリに属するMetadataPreset
+            let targetRelationMetadataPresetObjs = realm.objects(MetadataPresetObject.self).filter("mpBelongCategory like '" + targetObject.catName + "'")
+            // 消す対象のカテゴリに属するContents
+            let targetRelationContentObjs = realm.objects(ContentObject.self).filter("conBelongingCategory like '" + targetObject.catName + "'")
+            // 消す対象のカテゴリに属するContentに属するMetadata
+            var targetRelationMeataObjs:[Results<MetadataObject>] = []
+            for tRCO in targetRelationContentObjs{
+                targetRelationMeataObjs.append(realm.objects(MetadataObject.self).filter("mBelongingContent like '" + tRCO.conName + "'"))
+            }
             try! realm.write {
                 realm.delete(targetObject)
-                realm.delete(targetRelationObjects)
+                realm.delete(targetRelationMetadataPresetObjs)
+                realm.delete(targetRelationContentObjs)
+                for tRMO in targetRelationMeataObjs{
+                    realm.delete(tRMO)
+                }
             }
         }else{
             showErrorAlert()
@@ -129,17 +125,15 @@ class CategoryListViewController: UIViewController,UITableViewDataSource, UITabl
         category.remove(at: indexPath.row)
         
         deleteRealm(index: indexPath.row)
-        //categoryArray.remove(at: indexPath.row)
         // テーブルビューを更新
         categoryTableView.reloadData()
-        //categoryTableView.deleteRows(at: [IndexPath(forRow: indexPath.row, inSection: 0) as IndexPath], with: UITableViewRowAnimation.fade)
+
         categoryTableView.isEditing = false
     }
     // 移動可能なセルを設定（すべてを許可）
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {

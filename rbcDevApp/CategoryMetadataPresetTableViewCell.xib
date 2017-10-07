@@ -74,6 +74,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" ◀Swipe to Del" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBk-3j-4EK">
+                        <rect key="frame" x="298" y="86" width="77" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -83,7 +91,7 @@
                 <outlet property="numberingLabel" destination="dY1-hk-ZsV" id="Spp-T9-x3a"/>
                 <outlet property="unitLabel" destination="g04-Fe-jMn" id="mDi-SZ-saC"/>
             </connections>
-            <point key="canvasLocation" x="60.5" y="133.5"/>
+            <point key="canvasLocation" x="60.5" y="133"/>
         </tableViewCell>
     </objects>
 </document>

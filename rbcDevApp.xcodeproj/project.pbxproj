@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12043FF11F88CB8C008D4514 /* CommonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12043FF01F88CB8C008D4514 /* CommonTabBarController.swift */; };
 		123ECA031F5686E700B31DD6 /* ContentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */; };
 		123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA041F56870300B31DD6 /* AddContentViewController.swift */; };
 		123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123ECA061F56871500B31DD6 /* TagListViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12043FF01F88CB8C008D4514 /* CommonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTabBarController.swift; sourceTree = "<group>"; };
 		123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsListViewController.swift; sourceTree = "<group>"; };
 		123ECA041F56870300B31DD6 /* AddContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentViewController.swift; sourceTree = "<group>"; };
 		123ECA061F56871500B31DD6 /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		ABB437A61F67CA2C00D6F699 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				12043FF01F88CB8C008D4514 /* CommonTabBarController.swift */,
 				124A65FB1F7F9A5800004A8A /* Contetns */,
 				12CDD1311F84AD920088B10A /* Add Contents */,
 				124A65FC1F7F9A7400004A8A /* Category */,
@@ -406,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				123ECA091F56872400B31DD6 /* SettingViewController.swift in Sources */,
+				12043FF11F88CB8C008D4514 /* CommonTabBarController.swift in Sources */,
 				123ECA051F56870300B31DD6 /* AddContentViewController.swift in Sources */,
 				123ECA0D1F56875000B31DD6 /* Contents.swift in Sources */,
 				124A66021F81041300004A8A /* CategoryDetailViewController.swift in Sources */,

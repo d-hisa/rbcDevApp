@@ -12,19 +12,32 @@ import RealmSwift
 class AddContentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var categoryTableView: UITableView!
+    @IBOutlet var noticeLabel:UILabel!
     var selectedindexRow:Int = 0
+    let refreshCtrl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let realm = try! Realm()
+        let count:Int = realm.objects(CategoryObject.self).count
+        if count != 0{
+            noticeLabel.isHidden = true
+        }else{
+            noticeLabel.isHidden = false
+        }
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         categoryTableView.tableFooterView = UIView()
+        categoryTableView.refreshControl = refreshCtrl
+        refreshCtrl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
         let nib : UINib = UINib(nibName:"CategoryListTableViewCell",bundle: Bundle.main)
         categoryTableView.register(nib, forCellReuseIdentifier: "CategoryCell")
         categoryTableView.reloadData()
-
-        // Do any additional setup after loading the view.
+    }
+    // 引き下げ更新の処理
+    func refresh(sender: UIRefreshControl) {
+        categoryTableView.reloadData()
+        sender.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,12 +82,14 @@ class AddContentViewController: UIViewController, UITableViewDelegate, UITableVi
                 let tmpCat = realm.objects(CategoryObject.self)[selectedindexRow]
                 inputContentDataViewController.categoryObj = tmpCat
             }
-            
         case .none:
             break
         case .some(_):
             break
         }
+    }
+    @IBAction func unwindToAddMenu(segue:UIStoryboardSegue){
+        // pass
     }
 
 }

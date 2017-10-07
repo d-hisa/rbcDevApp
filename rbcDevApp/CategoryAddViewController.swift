@@ -16,6 +16,7 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet var pickerColorLevel: UIPickerView!
     @IBOutlet var sampleColorLabel:UILabel!
     @IBOutlet var metadataTableView: UITableView!
+    @IBOutlet var editableSwitch:UISwitch!
     
     struct tmpMetaData{
         var name:String = ""
@@ -27,17 +28,13 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
             self.unit = unit
         }
     }
-    
-    
     var azusaColorNum: Int = 0
     var azusaLevelNum: Int = 0
     var tmpMetadataArray: [tmpMetaData] = []
     var MetadataPresetObjArray: [MetadataPresetObject] = []
-    var MetadataPresetArray:[MetadataObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         metadataTableView.dataSource = self
         metadataTableView.delegate = self
         pickerColorLevel.dataSource = self
@@ -109,11 +106,31 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         tableView.deselectRow(at: indexPath, animated: true)
         metadataTableView.reloadData()
     }
+    // 削除可能なセルを設定（すべてを許可）
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     // TableView
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // スイッチの挙動
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        if sender.isOn{
+            metadataTableView.isEditing = true
+        }else{
+            metadataTableView.isEditing = false
+        }
+    }
+    // editされた時
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // テーブルの元データアレイを更新
+        MetadataPresetObjArray.remove(at: indexPath.row)
+        // テーブルビューを更新
+        metadataTableView.reloadData()
     }
     
     // Cancelボタンを押したときの挙動
@@ -221,11 +238,13 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
             unit: "-",
             withCategory: "")
         MetadataPresetObjArray.append(defaultMetadata)
-        let nos = metadataTableView.numberOfSections
-        let nor = metadataTableView.numberOfRows(inSection: nos-1)
-        let lastPath:IndexPath = IndexPath(row: nor-1, section: nos-1)
-        metadataTableView.scrollToRow( at: lastPath , at: .bottom, animated: true)
         metadataTableView.reloadData()
+        if MetadataPresetObjArray.count > 3 {
+            let nos = metadataTableView.numberOfSections
+            let nor = metadataTableView.numberOfRows(inSection: nos-1)
+            let lastPath:IndexPath = IndexPath(row: nor-1, section: nos-1)
+            metadataTableView.scrollToRow( at: lastPath , at: .bottom, animated: true)
+        }
     }
     // metadataをAlertでセットする
     func settingMetadataAlert(selectedRow:Int) {
@@ -312,37 +331,4 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         label.isEnabled = true
         label.textColor = UIColor.black
     }
-    /*
-    func convertTmp2Obj(){
-        for i in 0..<tmpMetadataArray.count {
-            let name:String = tmpMetadataArray[i].name
-            let type:String = tmpMetadataArray[i].format
-            let unit:String = tmpMetadataArray[i].unit
-            
-            let mType = MetadataObject.mType.self
-            var mData:MetadataPresetObject
-            switch type{
-            case mType.freeFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, text: "")
-                MetadataPresetArray.append(mData)
-            case mType.numericFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, value: 0.0)
-                MetadataPresetArray.append(mData)
-            case mType.numericWithUnitFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, value: 0.0, text: unit)
-                MetadataPresetArray.append(mData)
-            case mType.dateFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, date: Date())
-                MetadataPresetArray.append(mData)
-            case mType.imageFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, image: Defaults().image)
-            case mType.colorFormat.rawValue:
-                mData = MetadataObject(name: name, type: type, color: Defaults().backColor)
-            default:
-                mData = MetadataObject(name: name, type: type, text: "")
-                MetadataPresetArray.append(mData)
-            }
-        }
-    }*/
-
 }
