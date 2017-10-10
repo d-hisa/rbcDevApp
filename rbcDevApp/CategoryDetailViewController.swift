@@ -46,7 +46,11 @@ class CategoryDetailViewController: UIViewController, UITableViewDataSource, UIT
         cell.nameLabel.text = delegateCategory.metaDataPresetsObjArray[indexPath.row].mpName
         cell.formatLabel.text = delegateCategory.metaDataPresetsObjArray[indexPath.row].mpFormat
         cell.unitLabel.text = delegateCategory.metaDataPresetsObjArray[indexPath.row].mpUnit
+        cell.deleteLabel.backgroundColor = UIColor.white
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

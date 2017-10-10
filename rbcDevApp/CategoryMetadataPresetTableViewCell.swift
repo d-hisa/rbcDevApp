@@ -14,6 +14,7 @@ class CategoryMetadataPresetTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel:UILabel!
     @IBOutlet var formatLabel:UILabel!
     @IBOutlet var unitLabel:UILabel!
+    @IBOutlet var deleteLabel:UILabel!
    
     
     override func awakeFromNib() {

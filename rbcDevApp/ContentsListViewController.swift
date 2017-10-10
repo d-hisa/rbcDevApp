@@ -12,7 +12,13 @@ import RealmSwift
 
 class ContentsListViewController: ButtonBarPagerTabStripViewController {
     
+    func clickReloadAction(){
+        self.reloadPagerTabStripView()
+        self.reloadInputViews()
+    }
     override func viewDidLoad() {
+        let relaodActionButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(ContentsListViewController.clickReloadAction))
+        self.navigationItem.setRightBarButton(relaodActionButton, animated: true)
         //バーの色
         settings.style.buttonBarBackgroundColor = UIColor(red: 73/255, green: 72/255, blue: 62/255, alpha: 1)
         //ボタンの色

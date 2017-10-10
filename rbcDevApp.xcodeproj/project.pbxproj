@@ -81,6 +81,7 @@
 		12734BAF1F89157200DF3189 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		1276D1C71F6BA950008371B1 /* demoDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = demoDatas.swift; sourceTree = "<group>"; };
 		1276D1CB1F6BC909008371B1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		128EB6621F8CDAF1009F102F /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		12C859401F838DED00F2243E /* CategoryMetadataPresetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMetadataPresetTableViewCell.swift; sourceTree = "<group>"; };
 		12C859411F838DED00F2243E /* CategoryMetadataPresetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryMetadataPresetTableViewCell.xib; sourceTree = "<group>"; };
 		1B76DFCCDFE7B34957787622 /* Pods-rbcDevApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rbcDevApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-rbcDevApp/Pods-rbcDevApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +249,7 @@
 		ABB437AE1F67E13000D6F699 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				128EB6621F8CDAF1009F102F /* launch.png */,
 				ABA4E5F91F7B9C33003F8C0E /* iphone_receipt.jpg */,
 				ABA4E5F31F7B74AE003F8C0E /* noImage.png */,
 				ABB437CB1F68298200D6F699 /* sample_iphone.jpg */,
