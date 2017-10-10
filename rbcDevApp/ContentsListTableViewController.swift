@@ -47,6 +47,12 @@ class ContentsListTableViewController: UIViewController, UITableViewDataSource, 
     func refresh(sender: UIRefreshControl) {
         let realm = try! Realm()
         contentsObj = Array(realm.objects(ContentObject.self).filter("conBelongingCategory like '" + self.title! + "'"))
+        for cObj in contentsObj{
+            cObj.decodeData()
+            for mData in cObj.conMetadataObjArray{
+                mData.decodeData()
+            }
+        }
         contentsListTableViews.reloadData()
         sender.endRefreshing()
     }

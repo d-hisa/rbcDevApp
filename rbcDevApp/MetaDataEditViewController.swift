@@ -283,9 +283,18 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
         case type.freeFormat.rawValue:
             metadata.mText = textField.text!
         case type.numericFormat.rawValue:
-            metadata.mValue = Double(textField.text!)!
+            if textField.text!.isNumericOnly(){
+                metadata.mValue = Double(textField.text!)!
+            }else{
+                util().showErrorAlert(title: "半角数字以外が入力されています", message: "数値は半角数字のみで入力してください", vc: self)
+            }
+            
         case type.numericWithUnitFormat.rawValue:
-            metadata.mValue = Double(textField.text!)!
+            if textField.text!.isNumericOnly(){
+                metadata.mValue = Double(textField.text!)!
+            }else{
+                util().showErrorAlert(title: "半角数字以外が入力されています", message: "数値は半角数字のみで入力してください", vc: self)
+            }
         case type.dateFormat.rawValue:
             metadata.mDate = datePicker.date
         case type.imageFormat.rawValue:

@@ -88,6 +88,7 @@ class ContentDetailViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contentMetadataCell") as! ContentMetadataTableViewCell
         let mData: MetadataObject = thisContent.conMetadataObjArray[indexPath.section]
+        mData.decodeData()
         let type = MetadataObject.mType.self
         switch mData.mType {
         case type.freeFormat.rawValue:

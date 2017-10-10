@@ -322,4 +322,14 @@ extension String{
             return false
         }
     }
+    func isNumericOnly() -> Bool{
+        let phrase:String = self
+        let range = phrase.rangeOfCharacter(from: CharacterSet.decimalDigits)
+        if let _ = range {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 }
