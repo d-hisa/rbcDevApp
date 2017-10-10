@@ -309,3 +309,17 @@ extension UIImage{
         return thisImageData
     }
 }
+
+extension String{
+    func isWithWhitespace() -> Bool{
+        //let whitespace = NSCharacterSet.whitespaceswhitespaces
+        let phrase:String = self
+        let range = phrase.rangeOfCharacter(from: CharacterSet.whitespaces)
+        if let _ = range {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+}

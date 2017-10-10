@@ -20,14 +20,18 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
     var categoryObj:CategoryObject = CategoryObject()
     var tempMetadataObjArray:[MetadataObject] = []
     var selectedIndexPathRow:Int = 0
+    var contentObj:ContentObject?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryObj.decodeData()
         if tempMetadataObjArray.count > 0{
-            //already tempMetadataObjArray initialized.
+            titleField.text = contentObj?.conName
+            contentImage.image = contentObj?.conImage
         }else{
+            titleField.placeholder = "content name"
+            contentImage.image = Defaults().image
             for i in 0..<categoryObj.metaDataPresetsObjArray.count{
                 let type = MetadataObject.mType.self
                 let thisType:String = categoryObj.metaDataPresetsObjArray[i].mpFormat
@@ -51,11 +55,10 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
                 }
             }
         }
-        titleField.placeholder = "content name"
         categorylabel.text = categoryObj.catName
         categorylabel.backgroundColor = categoryObj.catBackColor
         categorylabel.textColor = categoryObj.catTextColor
-        contentImage.image = Defaults().image
+        
         contentImage.isUserInteractionEnabled = true
         contentImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(InputContentDataViewController.imageViewTapped(_:))))
         metadataTableView.delegate = self
@@ -165,27 +168,52 @@ class InputContentDataViewController: UIViewController,UIImagePickerControllerDe
     }
     
     @IBAction func saveContent(){
+        var fromEdit:Bool = true
         if titleField.text! == ""{
             util().showErrorAlert(title: "コンテンツ名が空白です", message: "コンテンツ名は必須です", vc: self)
             return
         }
         let realm = try! Realm()
-        let contentObj:ContentObject = ContentObject()
-        contentObj.conName = titleField.text!
-        contentObj.conImage = contentImage.image!
-        for tMOA in tempMetadataObjArray{tMOA.mBelongingContent = contentObj.conName}
-        contentObj.conBelongingCategory = categoryObj.catName
-        contentObj.conMetadataObjArray = tempMetadataObjArray
-        contentObj.encodeData()
         try! realm.write {
-            realm.add(contentObj)
+            if contentObj == nil{
+                contentObj = ContentObject()
+                contentObj?.conName = titleField.text!
+                contentObj?.conImage = contentImage.image!
+                for tMOA in tempMetadataObjArray{
+                    tMOA.mBelongingContent = (contentObj?.conName)!
+                    tMOA.encodeData()
+                }
+                contentObj?.conBelongingCategory = categoryObj.catName
+                contentObj?.conMetadataObjArray = tempMetadataObjArray
+                contentObj?.encodeData()
+                realm.add(contentObj!)
+                fromEdit = false
+            }else{
+                contentObj?.conName = titleField.text!
+                contentObj?.conImage = contentImage.image!
+                for tMOA in tempMetadataObjArray{
+                    tMOA.mBelongingContent = (contentObj?.conName)!
+                    tMOA.encodeData()
+                }
+                contentObj?.conBelongingCategory = categoryObj.catName
+                contentObj?.conMetadataObjArray = tempMetadataObjArray
+                contentObj?.encodeData()
+                fromEdit = true
+            }
+            
         }
         let alert = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
         self.present(alert, animated: true, completion: {
             // アラートを閉じる
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 alert.dismiss(animated: true, completion: nil)
-                self.performSegue(withIdentifier: "returnAddContentView", sender: self)
+                
+                if fromEdit{
+                    self.performSegue(withIdentifier: "returnContentDetailView", sender: self)
+                }else{
+                    self.performSegue(withIdentifier: "returnAddContentView", sender: self)
+                }
+                
             })
         })
         //self.performSegue(withIdentifier: "returnAddContentView", sender: self)

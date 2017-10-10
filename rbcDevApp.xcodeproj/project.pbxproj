@@ -27,6 +27,7 @@
 		1265AEBC1F84BEA700FB7D84 /* MetadataInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1265AEBA1F84BEA700FB7D84 /* MetadataInputTableViewCell.swift */; };
 		1265AEBD1F84BEA700FB7D84 /* MetadataInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1265AEBB1F84BEA700FB7D84 /* MetadataInputTableViewCell.xib */; };
 		1265AEBF1F84BFA300FB7D84 /* InputContentDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1265AEBE1F84BFA300FB7D84 /* InputContentDataViewController.swift */; };
+		12734BB01F89157200DF3189 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12734BAF1F89157200DF3189 /* ContentListViewController.swift */; };
 		1276D1C81F6BA950008371B1 /* demoDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276D1C71F6BA950008371B1 /* demoDatas.swift */; };
 		1276D1CC1F6BC909008371B1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276D1CB1F6BC909008371B1 /* Defaults.swift */; };
 		12C859421F838DED00F2243E /* CategoryMetadataPresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C859401F838DED00F2243E /* CategoryMetadataPresetTableViewCell.swift */; };
@@ -77,6 +78,7 @@
 		1265AEBA1F84BEA700FB7D84 /* MetadataInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataInputTableViewCell.swift; sourceTree = "<group>"; };
 		1265AEBB1F84BEA700FB7D84 /* MetadataInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MetadataInputTableViewCell.xib; sourceTree = "<group>"; };
 		1265AEBE1F84BFA300FB7D84 /* InputContentDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContentDataViewController.swift; sourceTree = "<group>"; };
+		12734BAF1F89157200DF3189 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		1276D1C71F6BA950008371B1 /* demoDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = demoDatas.swift; sourceTree = "<group>"; };
 		1276D1CB1F6BC909008371B1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		12C859401F838DED00F2243E /* CategoryMetadataPresetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMetadataPresetTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				123ECA021F5686E700B31DD6 /* ContentsListViewController.swift */,
+				12734BAF1F89157200DF3189 /* ContentListViewController.swift */,
 				ABB437C31F67EBA200D6F699 /* ContentsListTableViewController.swift */,
 				ABB437C71F67ED1F00D6F699 /* ContentsListTableViewCell.swift */,
 				ABB437C81F67ED1F00D6F699 /* ContentsListTableViewCell.xib */,
@@ -356,12 +359,14 @@
 				"${BUILT_PRODUCTS_DIR}/PageMenu/PageMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,6 +429,7 @@
 				1276D1C81F6BA950008371B1 /* demoDatas.swift in Sources */,
 				12434C051F82407D004E1E05 /* ContentObject.swift in Sources */,
 				123ECA111F569D0200B31DD6 /* metaData.swift in Sources */,
+				12734BB01F89157200DF3189 /* ContentListViewController.swift in Sources */,
 				1265AEBF1F84BFA300FB7D84 /* InputContentDataViewController.swift in Sources */,
 				123ECA071F56871500B31DD6 /* TagListViewController.swift in Sources */,
 				123ECA031F5686E700B31DD6 /* ContentsListViewController.swift in Sources */,

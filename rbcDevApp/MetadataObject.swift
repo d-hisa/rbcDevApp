@@ -36,11 +36,11 @@ class MetadataObject: Object {
     dynamic var mType:String = ""
     dynamic var mValue:Double = 0.0
     dynamic var mText:String = ""
-    var mImage:UIImage = UIImage()
-    dynamic var mImageData:Data = Data()
+    var mImage:UIImage?
+    dynamic var mImageData:Data?
     var mDate:Date = Defaults().todayDate
-    dynamic var mDateData:Data = Data()
-    var mColor:UIColor = UIColor()
+    dynamic var mDateData:Data?
+    var mColor:UIColor?
     dynamic var mColorData:Data = Data()
     dynamic var mBelongingContent:String = ""
     
@@ -73,7 +73,7 @@ class MetadataObject: Object {
         self.mType = type
         self.mValue = 0.0
         self.mText = text
-        self.mImage = UIImage()
+        //self.mImage = UIImage()
         self.mDate = Date()
         self.mColor = UIColor.white
     }
@@ -84,7 +84,7 @@ class MetadataObject: Object {
         self.mType = type
         self.mValue = value
         self.mText = ""
-        self.mImage = UIImage()
+        //self.mImage = UIImage()
         self.mDate = Date()
         self.mColor = UIColor.white
     }
@@ -95,7 +95,7 @@ class MetadataObject: Object {
         self.mType = type
         self.mValue = value
         self.mText = text
-        self.mImage = UIImage()
+        //self.mImage = UIImage()
         self.mDate = Date()
         self.mColor = UIColor.white
     }
@@ -117,7 +117,7 @@ class MetadataObject: Object {
         self.mType = type
         self.mValue = 0.0
         self.mText = ""
-        self.mImage = UIImage()
+        //self.mImage = UIImage()
         self.mDate = date
         self.mColor = UIColor.white
     }
@@ -128,7 +128,7 @@ class MetadataObject: Object {
         self.mType = type
         self.mValue = 0.0
         self.mText = ""
-        self.mImage = UIImage()
+        //self.mImage = UIImage()
         self.mDate = Date()
         self.mColor = color
     }
@@ -136,13 +136,21 @@ class MetadataObject: Object {
     // Realm格納用に各データをエンコード
     func encodeData(){
         //self.mImageData = NSKeyedArchiver.archivedData(withRootObject: self.mImage) as Data
-        self.mImageData = self.mImage.convertImage2DataWithArchiving(maxKB: 100)
-        self.mColorData = NSKeyedArchiver.archivedData(withRootObject: self.mColor) as Data
+        if mImage != nil{
+            self.mImageData = (self.mImage?.convertImage2DataWithArchiving(maxKB: 100))!
+        }
+        if mColor != nil{
+            self.mColorData = NSKeyedArchiver.archivedData(withRootObject: self.mColor) as Data
+        }
     }
     // Realm展開用に各データをデコード
     func decodeData(){
         //self.mImage = NSKeyedUnarchiver.unarchiveObject(with: mImageData) as! UIImage
-        self.mImage = UIImage(data: self.mImageData)!
-        self.mColor = NSKeyedUnarchiver.unarchiveObject(with: mColorData) as! UIColor
+        if mImageData != nil{
+            self.mImage = UIImage(data: self.mImageData!)!
+        }
+        if mColorData != nil{
+            self.mColor = NSKeyedUnarchiver.unarchiveObject(with: mColorData) as! UIColor
+        }
     }
 }

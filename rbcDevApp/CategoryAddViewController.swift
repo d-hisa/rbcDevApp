@@ -150,6 +150,9 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if titleTextField.text! == ""{
             showErrorAlert(num: 1)
             return
+        }else if titleTextField.text!.isWithWhitespace(){
+            showErrorAlert(num: 2)
+            return
         }
         let realm = try! Realm()
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -215,6 +218,9 @@ class CategoryAddViewController: UIViewController, UIPickerViewDelegate, UIPicke
         case 1:
             title = "カテゴリ名が未入力です"
             message = "カテゴリ名は他と重複しないユニークな名称を設定してください"
+        case 2:
+            title = "カテゴリ名に半角スペースが含まれています"
+            message = "カテゴリ名は半角スペースを含まない形式で入力してください"
         default:
             title = "不明なエラーです"
             message = "開発者にお問い合わせください"

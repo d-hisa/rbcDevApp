@@ -78,9 +78,9 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
         // common sets
         textField.text = metadata.mText
         datePicker.setDate(metadata.mDate, animated: true)
-        rSlider.setValue(metadata.mColor.componentsF.redF, animated: true)
-        bSlider.setValue(metadata.mColor.componentsF.greenF, animated: true)
-        gSlider.setValue(metadata.mColor.componentsF.blueF, animated: true)
+        rSlider.setValue((metadata.mColor?.componentsF.redF)!, animated: true)
+        bSlider.setValue((metadata.mColor?.componentsF.greenF)!, animated: true)
+        gSlider.setValue((metadata.mColor?.componentsF.blueF)!, animated: true)
         sampleColorLabel.backgroundColor = metadata.mColor
         imageDataView.image = metadata.mImage
 
@@ -138,9 +138,9 @@ class MetaDataEditViewController: UIViewController,UIPickerViewDelegate,UIPicker
             unitLabel.isHidden = true
             labelDisabling(label: dateLabel)
             datePicker.isUserInteractionEnabled = false
-            rSlider.setValue(Float(metadata.mColor.components.red) * 255, animated: true)
-            gSlider.setValue(Float(metadata.mColor.components.green) * 255, animated: true)
-            bSlider.setValue(Float(metadata.mColor.components.blue) * 255, animated: true)
+            rSlider.setValue(Float((metadata.mColor?.components.red)!) * 255, animated: true)
+            gSlider.setValue(Float((metadata.mColor?.components.green)!) * 255, animated: true)
+            bSlider.setValue(Float((metadata.mColor?.components.blue)!) * 255, animated: true)
             colorNamePicker.isUserInteractionEnabled = false
             colorLevelPicker.isUserInteractionEnabled = false
             labelDisabling(label: imageLabel)

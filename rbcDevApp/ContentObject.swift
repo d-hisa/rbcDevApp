@@ -33,6 +33,7 @@ class ContentObject: Object{
             conMetadataObjList.removeAll()
         }
         for i in 0..<conMetadataObjArray.count {
+            conMetadataObjArray[i].encodeData()
             conMetadataObjList.append(conMetadataObjArray[i])
         }
     }
@@ -41,6 +42,7 @@ class ContentObject: Object{
             conMetadataObjArray.removeAll()
         }
         for i in 0..<conMetadataObjList.count{
+            conMetadataObjList[i].decodeData()
             conMetadataObjArray.append(conMetadataObjList[i])
         }
     }

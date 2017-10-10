@@ -7,92 +7,56 @@
 //
 
 import UIKit
-import PageMenu
+import XLPagerTabStrip
+import RealmSwift
 
-class ContentsListViewController: UIViewController {
-
-    var pageMenu: CAPSPageMenu?
+class ContentsListViewController: ButtonBarPagerTabStripViewController {
     
-    var demoCategoryArray: [Category] = [
-        Category(name: "Apple",code: "1",color: UIColor.white,textColor: UIColor.black),
-        Category(name: "Device",code: "2",color: UIColor.white,textColor: UIColor.black),
-        Category(name: "Cloth",code: "3",color: UIColor.white,textColor: UIColor.black)
-    ]
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        var listedViewControllers:[UIViewController] = []
+        let realm = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        let catObjects = realm.objects(CategoryObject.self)
+        if catObjects.count > 0{
+            for cObj in catObjects{
+                cObj.decodeData()
+                let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
+                controller.itemInfo = IndicatorInfo(stringLiteral: cObj.catName)
+                controller.title = cObj.catName
+                controller.contentsObj = Array(realm.objects(ContentObject.self).filter("conBelongingCategory like '" + cObj.catName + "'"))
+                listedViewControllers.append(controller)
+            }
+        }else{
+            let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
+            controller.itemInfo = IndicatorInfo(stringLiteral: "NoCategories")
+            controller.title = "カテゴリがありません"
+            var tempContent = ContentObject(name: "カテゴリがありません", withCat: "NoCategories")
+            tempContent.conImage = Defaults().image
+            tempContent.encodeData()
+            controller.contentsObj.append(tempContent)
+            listedViewControllers.append(controller)
+        }
         
-        // Define scroll page contoller array
-        var controllerArray : [UIViewController] = []
+
+        /*
         var demoDataCatArray: [Category] = demoDatas().categoryArray
-        
         for i in 0 ..< demoDataCatArray.count{
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
+            controller.itemInfo = IndicatorInfo(stringLiteral: demoDataCatArray[i].catName)
             controller.title = demoDataCatArray[i].catName
             controller.category = demoDataCatArray[i]
-            controllerArray.append(controller)
+            listedViewControllers.append(controller)
         }
-        /*
-        for i in 0 ..< demoCategoryArray.count {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let controller = storyboard.instantiateViewController(withIdentifier: "ContentsListTableViewController") as! ContentsListTableViewController
-            controller.title = demoCategoryArray[i].catName
-            controller.category = demoCategoryArray[i]
-            controllerArray.append(controller)
-        }*/
-
-        let parameters: [CAPSPageMenuOption] = [
-            // テキストタイトルの幅にタブ幅を追従
-            .menuItemWidthBasedOnTitleTextWidth(true),
-            // スクロールメニューの背景色
-            .scrollMenuBackgroundColor(UIColor.white),
-            // タブ自体の背景色
-            .viewBackgroundColor(UIColor.white),
-            // タブメニュー自体の下線の色
-            .bottomMenuHairlineColor(UIColor.blue),
-            // 選択されているタブの下線の色
-            .selectionIndicatorColor(UIColor.red),
-            // メニューのフォント設定
-            .menuItemFont(UIFont(name: "HelveticaNeue", size: 14.0)!),
-            // タブ内テキストの中央揃え？
-            .centerMenuItems(true),
-            // メニューの余白
-            .menuMargin(16),
-            // 選択されたタブの（文字の）色
-            .selectedMenuItemLabelColor(UIColor.black),
-            // 選択されていないタブの（文字の）色
-            .unselectedMenuItemLabelColor(UIColor.gray)
-        ]
-        
-        let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
-        let navBarHeight = self.navigationController?.navigationBar.frame.size.height
-        let tabBarHeight = self.tabBarController?.tabBar.frame.size.height
-        let topArea = statusBarHeight + navBarHeight!
-        let bottomArea = tabBarHeight!
-        print(topArea + bottomArea)
-
-        // Initialize page menu with controller array, frame, and optional parameters
-        pageMenu = CAPSPageMenu(
-            viewControllers: controllerArray,
-            frame: CGRect(x:0.0,y: 0.0, width:self.view.frame.width, height:self.view.frame.height),
-            pageMenuOptions: parameters
-        )
-        
-        // Lastly add page menu as subview of base view controller view
-        // or use pageMenu controller in you view hierachy as desired
-        self.addChildViewController(self.pageMenu!)
-        self.view.addSubview(pageMenu!.view)
-        
-        // Optional delegate
-        pageMenu!.delegate = self as? CAPSPageMenuDelegate
-        
-
+ */
+        return listedViewControllers
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
